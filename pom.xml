@@ -29,6 +29,7 @@
         <module>libra-center</module>
         <module>libra-config</module>
         <module>libra-spring-boot-admin</module>
+        <module>libra-system</module>
     </modules>
 
     <properties>

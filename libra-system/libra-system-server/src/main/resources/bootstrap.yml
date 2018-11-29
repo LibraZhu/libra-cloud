@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: libra-system-server
+  profiles:
+    active: @spring.active@
+  cloud:
+    config:
+      discovery:
+        service-id: libra-config
+        enabled: true
+      profile: @spring.active@
+      label: master
