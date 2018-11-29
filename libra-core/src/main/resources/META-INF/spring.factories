@@ -1,0 +1,13 @@
+# AutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.libra.core.config.AopAutoConfiguration,\
+com.libra.core.config.RedisAutoConfiguration,\
+com.libra.core.config.FastjsonAutoConfiguration,\
+com.libra.core.config.MybatisDataSourceAutoConfiguration,\
+com.libra.core.config.PropertiesAutoConfiguration,\
+com.libra.core.config.UtilAutoConfiguration,\
+com.libra.core.config.WebAutoConfiguration,\
+com.libra.core.config.DbInitializerAutoConfiguration,\
+com.libra.core.jwt.config.JwtAutoConfiguration,\
+com.libra.core.validator.config.ValidatorAutoConfiguration,\
+com.libra.core.logger.config.LoggerAutoConfiguration
