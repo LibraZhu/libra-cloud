@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libra.cloud.system.mapper.SysRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.libra.cloud.system.entity.SysRole">
+        <id column="ROLE_ID" property="roleId" />
+        <result column="NAME" property="name" />
+        <result column="TITLE" property="title" />
+        <result column="DESCRIPTION" property="description" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="ORDERS" property="orders" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROLE_ID, NAME, TITLE, DESCRIPTION, CREATE_TIME, ORDERS
+    </sql>
+
+</mapper>

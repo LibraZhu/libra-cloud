@@ -1,6 +1,6 @@
 package com.libra.cloud.system.provider;
 
-import com.libra.cloud.system.api.AuthService;
+import com.libra.core.api.AuthService;
 import com.libra.cloud.system.api.context.LoginUser;
 import com.libra.cloud.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

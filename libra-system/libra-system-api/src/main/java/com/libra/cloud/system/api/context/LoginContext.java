@@ -1,6 +1,6 @@
 package com.libra.cloud.system.api.context;
 
-import com.libra.cloud.system.api.AuthService;
+import com.libra.core.api.AuthService;
 import com.libra.core.exception.CoreExceptionEnum;
 import com.libra.core.exception.ServiceException;
 import com.libra.core.user.AbstractLoginUser;

@@ -1,6 +1,6 @@
 package com.libra.cloud.system.config;
 
-import com.libra.cloud.system.api.AuthService;
+import com.libra.core.api.AuthService;
 import com.libra.cloud.system.api.context.LoginContext;
 import com.libra.core.logger.aop.ChainOnConsumerAop;
 import com.libra.core.logger.aop.ChainOnControllerAop;

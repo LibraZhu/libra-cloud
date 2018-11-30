@@ -3,33 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>libra-cloud</artifactId>
+        <artifactId>libra-common</artifactId>
         <groupId>com.libra.cloud</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>libra-system</artifactId>
-    <version>1.0.0</version>
-    <packaging>pom</packaging>
-
-    <name>libra-system</name>
-    <description>系统管理，包含权限管理，组织架构管理</description>
-
-    <modules>
-        <module>libra-system-api</module>
-        <module>libra-system-server</module>
-    </modules>
+    <artifactId>libra-scanner</artifactId>
+    <packaging>jar</packaging>
+    <description>资源扫描</description>
 
     <dependencies>
         <dependency>
             <groupId>com.libra.cloud</groupId>
             <artifactId>libra-core</artifactId>
             <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 </project>
