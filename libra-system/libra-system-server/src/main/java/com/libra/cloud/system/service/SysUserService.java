@@ -5,7 +5,11 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.libra.cloud.system.api.context.LoginUser;
 import com.libra.cloud.system.api.exception.enums.AuthExceptionEnum;
 import com.libra.cloud.system.constants.SystemConstants;
+import com.libra.cloud.system.entity.SysResource;
+import com.libra.cloud.system.entity.SysRole;
 import com.libra.cloud.system.entity.SysUser;
+import com.libra.cloud.system.mapper.SysResourceMapper;
+import com.libra.cloud.system.mapper.SysRoleMapper;
 import com.libra.cloud.system.mapper.SysUserMapper;
 import com.libra.core.exception.ServiceException;
 import com.libra.core.jwt.utils.JwtTokenUtil;
@@ -15,7 +19,10 @@ import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,6 +41,12 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    private SysRoleMapper sysRoleMapper;
+
+    @Autowired
+    private SysResourceMapper sysResourceMapper;
 
     /**
      * 用户登录，登录成功返回token
@@ -61,6 +74,20 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
         //token放入缓存
         LoginUser loginUser = new LoginUser();
         loginUser.setAccountId(sysUser.getUserId());
+        //角色
+        List<SysRole> roleList = sysRoleMapper.selectUserRoleByUserId(sysUser.getUserId());
+        Set<Integer> roleIdList = new HashSet<>();
+        for (SysRole role : roleList) {
+            roleIdList.add(role.getRoleId());
+        }
+        loginUser.setRoleIds(roleIdList);
+        //资源
+        List<SysResource> resourceList = sysResourceMapper.selectUserResourceByUserId(sysUser.getUserId());
+        Set<String> resourceUrlList = new HashSet<>();
+        for (SysResource resource : resourceList) {
+            resourceUrlList.add(resource.getUrl());
+        }
+        loginUser.setResourceUrls(resourceUrlList);
         BoundValueOperations<String, Object> opts = redisTemplate.boundValueOps(SystemConstants.LOGIN_USER_CACHE_PREFIX + jwtToken);
         opts.set(loginUser, SystemConstants.DEFAULT_LOGIN_TIME_OUT_SECS, TimeUnit.SECONDS);
 

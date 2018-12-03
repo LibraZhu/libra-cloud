@@ -8,6 +8,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @date 2018/11/30
  * @description 资源服务的消费者
  */
-@FeignClient("libra-system")
+@FeignClient("libra-system-server")
 public interface ResourceServiceConsumer extends ResourceService {
 }

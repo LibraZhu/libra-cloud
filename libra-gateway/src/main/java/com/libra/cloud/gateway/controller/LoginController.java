@@ -21,8 +21,8 @@ public class LoginController {
     /**
      * 登录接口
      */
-    @RequestMapping(AuthConstants.AUTH_ACTION_URL)
-    public ResponseData auth(@RequestParam("userName") String userName, @RequestParam("password") String password) {
+    @RequestMapping(value = "/gatewayAction/login")
+    public ResponseData login(@RequestParam("userName") String userName, @RequestParam("password") String password) {
         String token = authServiceConsumer.login(userName, password);
         return ResponseData.success(token);
     }
@@ -30,7 +30,7 @@ public class LoginController {
     /**
      * 验证token是否正确
      */
-    @RequestMapping(AuthConstants.VALIDATE_TOKEN_URL)
+    @RequestMapping(value = "/gatewayAction/validateToken")
     public ResponseData validateToken(@RequestParam("token") String token) {
         boolean tokenFlag = authServiceConsumer.checkToken(token);
         return ResponseData.success(tokenFlag);
@@ -39,7 +39,7 @@ public class LoginController {
     /**
      * 退出接口
      */
-    @RequestMapping(AuthConstants.LOGOUT_URL)
+    @RequestMapping(value = "/gatewayAction/logout")
     public ResponseData logout(@RequestParam("token") String token) {
         authServiceConsumer.logout(token);
         return ResponseData.success();

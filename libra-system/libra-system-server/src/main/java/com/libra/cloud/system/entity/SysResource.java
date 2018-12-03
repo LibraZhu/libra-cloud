@@ -98,6 +98,125 @@ public class SysResource implements Serializable {
     @TableField(value = "UPDATE_TIME", fill = FieldFill.UPDATE)
     private Date updateTime;
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getHttpMethod() {
+        return httpMethod;
+    }
+
+    public void setHttpMethod(String httpMethod) {
+        this.httpMethod = httpMethod;
+    }
+
+    public Integer getMenuFlag() {
+        return menuFlag;
+    }
+
+    public void setMenuFlag(Integer menuFlag) {
+        this.menuFlag = menuFlag;
+    }
+
+    public Integer getRequiredLogin() {
+        return requiredLogin;
+    }
+
+    public void setRequiredLogin(Integer requiredLogin) {
+        this.requiredLogin = requiredLogin;
+    }
+
+    public Integer getRequiredPermission() {
+        return requiredPermission;
+    }
+
+    public void setRequiredPermission(Integer requiredPermission) {
+        this.requiredPermission = requiredPermission;
+    }
+
+    public String getAppCode() {
+        return appCode;
+    }
+
+    public void setAppCode(String appCode) {
+        this.appCode = appCode;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
+    }
+
+    public String getModularCode() {
+        return modularCode;
+    }
+
+    public void setModularCode(String modularCode) {
+        this.modularCode = modularCode;
+    }
+
+    public String getModularName() {
+        return modularName;
+    }
+
+    public void setModularName(String modularName) {
+        this.modularName = modularName;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     @Override
     public String toString() {

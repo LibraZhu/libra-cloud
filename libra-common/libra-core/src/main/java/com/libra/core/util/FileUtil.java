@@ -19,6 +19,10 @@ import java.nio.channels.FileChannel;
 public class FileUtil {
     private static Logger log = LoggerFactory.getLogger(FileUtil.class);
 
+    public static final String FILE_DEFAULT_NAME = "default";
+
+    public static final String FILE_DEFAULT_SUFFIX = "txt";
+
     public static byte[] toByteArray(String filename) {
 
         File f = new File(filename);
@@ -50,6 +54,35 @@ public class FileUtil {
             } catch (IOException e) {
                 throw new ServiceException(CoreExceptionEnum.FILE_READING_ERROR);
             }
+        }
+    }
+
+    /**
+     * 获取文件后缀名 不包含点
+     *
+     * @author fengshuonan
+     * @Date 2018/6/27 下午3:50
+     */
+    public static String getFileSuffix(String fileWholeName) {
+        int lastIndexOf = fileWholeName.lastIndexOf(".");
+        return fileWholeName.substring(lastIndexOf + 1);
+    }
+
+    /**
+     * 获取文件名称(考虑文件名和后缀为空的情况，返回默认的文件名和后缀)
+     *
+     * @author fengshuonan
+     * @Date 2018/7/27 下午3:47
+     */
+    public static String getFileName(String fileName, String suffix) {
+        if (EmptyUtil.isEmpty(fileName)) {
+            if (EmptyUtil.isEmpty(suffix)) {
+                return FILE_DEFAULT_NAME + "." + FILE_DEFAULT_SUFFIX;
+            } else {
+                return FILE_DEFAULT_NAME + "." + suffix;
+            }
+        } else {
+            return fileName;
         }
     }
 }

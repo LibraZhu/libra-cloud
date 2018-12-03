@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libra.cloud.system.mapper.SysRoleResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.libra.cloud.system.entity.SysRoleResource">
+        <id column="ROLE_RESOURCE_ID" property="roleResourceId" />
+        <result column="ROLE_ID" property="roleId" />
+        <result column="CODE" property="code" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROLE_RESOURCE_ID, ROLE_ID, CODE
+    </sql>
+
+</mapper>

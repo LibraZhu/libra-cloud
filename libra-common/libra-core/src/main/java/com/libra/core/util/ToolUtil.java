@@ -50,6 +50,15 @@ public class ToolUtil {
     }
 
     /**
+     * 获取密码盐
+     *
+     * @return 6位的密码盐
+     */
+    public static String getSalt() {
+        return getRandomString(6);
+    }
+
+    /**
      * md5加密(加盐)
      *
      * @author fengshuonan
@@ -308,5 +317,12 @@ public class ToolUtil {
      */
     public static String currentTime() {
         return DateUtil.formatDateTime(new Date());
+    }
+
+    public static void main(String[] arg0){
+        String salt = getSalt();
+        System.out.println(salt);
+        String password = md5Hex("111111",salt);
+        System.out.println(password);
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>libra-support</artifactId>
+        <groupId>com.libra.cloud</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>libra-file</artifactId>
+    <packaging>jar</packaging>
+    <name>libra-file</name>
+    <description>文件基础业务封装</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.libra.cloud</groupId>
+            <artifactId>libra-file-api</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+    </dependencies>
+</project>

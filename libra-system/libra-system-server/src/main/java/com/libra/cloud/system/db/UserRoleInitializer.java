@@ -14,8 +14,8 @@ public class UserRoleInitializer extends DbInitializer {
     @Override
     public String getTableInitSql() {
         return "CREATE TABLE `sys_user_role` (\n" +
-                "  `USER_ROLE_ID` bigint(20) NOT NULL COMMENT '主键id',\n" +
-                "  `USER_ID` bigint(20) NOT NULL COMMENT '用户id',\n" +
+                "  `USER_ROLE_ID` int(10) NOT NULL COMMENT '主键id',\n" +
+                "  `USER_ID` int(10) NOT NULL COMMENT '用户id',\n" +
                 "  `ROLE_ID` int(10) NOT NULL COMMENT '角色id',\n" +
                 "  PRIMARY KEY (`USER_ROLE_ID`)\n" +
                 ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色关系表';";

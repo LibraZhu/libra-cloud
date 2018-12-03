@@ -16,7 +16,7 @@ public class LoginUser implements AbstractLoginUser {
     /**
      * 账号id
      */
-    private Long accountId;
+    private Integer accountId;
 
     /**
      * 应用id
@@ -26,7 +26,7 @@ public class LoginUser implements AbstractLoginUser {
     /**
      * 角色id集合
      */
-    private Set<Long> roleIds;
+    private Set<Integer> roleIds;
 
     /**
      * 角色编码集合
@@ -36,10 +36,10 @@ public class LoginUser implements AbstractLoginUser {
     /**
      * 可用资源集合
      */
-    private Set<Long> resourceUrls;
+    private Set<String> resourceUrls;
 
     @Override
-    public Long getUserUniqueId() {
+    public Integer getUserUniqueId() {
         return accountId;
     }
 
@@ -49,7 +49,7 @@ public class LoginUser implements AbstractLoginUser {
     }
 
     @Override
-    public Set<Long> getRoleIds() {
+    public Set<Integer> getRoleIds() {
         return roleIds;
     }
 
@@ -59,7 +59,7 @@ public class LoginUser implements AbstractLoginUser {
     }
 
     @Override
-    public Set<Long> getResourceUrls() {
+    public Set<String> getResourceUrls() {
         return resourceUrls;
     }
 }

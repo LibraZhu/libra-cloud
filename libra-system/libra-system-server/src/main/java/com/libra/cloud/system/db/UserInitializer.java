@@ -14,7 +14,7 @@ public class UserInitializer extends DbInitializer {
     @Override
     public String getTableInitSql() {
         return "CREATE TABLE `sys_user` (\n" +
-                "  `USER_ID` bigint(20) NOT NULL COMMENT '主键id',\n" +
+                "  `USER_ID` int(10) NOT NULL COMMENT '主键id',\n" +
                 "  `AVATAR` varchar(255) DEFAULT NULL COMMENT '头像',\n" +
                 "  `ACCOUNT` varchar(45) DEFAULT NULL COMMENT '账号',\n" +
                 "  `PASSWORD` varchar(45) DEFAULT NULL COMMENT '密码',\n" +

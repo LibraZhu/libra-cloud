@@ -11,15 +11,16 @@
 
     <artifactId>libra-common</artifactId>
     <version>1.0.0</version>
-    <modules>
-        <module>libra-core</module>
-        <module>libra-scanner</module>
-        <module>libra-generator</module>
-    </modules>
     <packaging>pom</packaging>
 
     <name>libra-common</name>
     <description>微服务核心</description>
 
+    <modules>
+        <module>libra-core</module>
+        <module>libra-scanner</module>
+        <module>libra-generator</module>
+        <module>libra-actuator</module>
+    </modules>
 
 </project>

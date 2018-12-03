@@ -14,15 +14,15 @@ public interface AuthConstants {
     /**
      * 鉴权地址
      */
-    String AUTH_ACTION_URL = "/gatewayAction/auth";
+    String AUTH_ACTION_URL = "/auth/login";
 
     /**
      * 检验token是否正确
      */
-    String VALIDATE_TOKEN_URL = "/gatewayAction/validateToken";
+    String VALIDATE_TOKEN_URL = "/auth/validateToken";
 
     /**
      * 退出接口
      */
-    String LOGOUT_URL = "/gatewayAction/logout";
+    String LOGOUT_URL = "/auth/logout";
 }

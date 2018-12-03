@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libra.cloud.system.mapper.SysResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.libra.cloud.system.entity.SysResource">
+        <id column="CODE" property="code"/>
+        <result column="NAME" property="name"/>
+        <result column="URL" property="url"/>
+        <result column="HTTP_METHOD" property="httpMethod"/>
+        <result column="MENU_FLAG" property="menuFlag"/>
+        <result column="REQUIRED_LOGIN" property="requiredLogin"/>
+        <result column="REQUIRED_PERMISSION" property="requiredPermission"/>
+        <result column="APP_CODE" property="appCode"/>
+        <result column="CLASS_NAME" property="className"/>
+        <result column="METHOD_NAME" property="methodName"/>
+        <result column="MODULAR_CODE" property="modularCode"/>
+        <result column="MODULAR_NAME" property="modularName"/>
+        <result column="IP_ADDRESS" property="ipAddress"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CODE, NAME, URL, HTTP_METHOD, MENU_FLAG, REQUIRED_LOGIN, REQUIRED_PERMISSION, APP_CODE, CLASS_NAME, METHOD_NAME, MODULAR_CODE, MODULAR_NAME, IP_ADDRESS, CREATE_TIME, UPDATE_TIME
+    </sql>
+
+    <!-- 根据用户id获取所属的资源 -->
+    <select id="selectUserResourceByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_resource r where r.CODE in (
+        select rr.CODE from sys_role_resource rr where rr.ROLE_ID in (
+        select ur.ROLE_ID from sys_user_role ur where ur.USER_ID=#{userId,jdbcType=INTEGER}
+        )
+        )
+    </select>
+</mapper>
