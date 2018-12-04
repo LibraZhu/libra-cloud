@@ -16,6 +16,8 @@
     <modules>
         <module>libra-file-api</module>
         <module>libra-file</module>
+        <module>libra-dict-api</module>
+        <module>libra-dict</module>
     </modules>
 
 

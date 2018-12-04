@@ -45,7 +45,6 @@ public class DefaultTreeBuildFactory<T extends Tree> extends AbstractTreeBuildFa
      *
      * @param list 所有节点的集合
      * @param node 被查询节点的model
-     * @author fengshuonan
      */
     private List<T> getSubChildsLevelOne(List<T> list, T node) {
         List<T> nodeList = new ArrayList<>();

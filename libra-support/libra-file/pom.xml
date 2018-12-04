@@ -11,6 +11,8 @@
 
     <artifactId>libra-file</artifactId>
     <packaging>jar</packaging>
+    <version>1.0.0</version>
+
     <name>libra-file</name>
     <description>文件基础业务封装</description>
 

@@ -19,9 +19,6 @@ public interface FileinfoMapper extends BaseMapper<Fileinfo> {
 
     /**
      * 获取fileinfo列表
-     *
-     * @author fengshuonan
-     * @Date 2018/7/27 下午4:19
      */
     List<Fileinfo> getFileInfoList(Page page, Fileinfo fileinfo);
 

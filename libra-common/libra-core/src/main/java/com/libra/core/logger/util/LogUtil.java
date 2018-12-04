@@ -62,9 +62,6 @@ public class LogUtil {
 
     /**
      * 记录日志(不需要传递请求号)
-     *
-     * @author fengshuonan
-     * @Date 2018/1/16 15:02
      */
     private static void doLog(LogLevel level, RequestData requestData, String message, Throwable exception) {
         doLog(TraceIdHolder.get(), level, requestData, message, exception);
@@ -72,9 +69,6 @@ public class LogUtil {
 
     /**
      * 记录日志(需要传递请求号，目前用在网关)
-     *
-     * @author fengshuonan
-     * @Date 2018/1/16 15:02
      */
     private static void doLog(String requestNo, LogLevel level, RequestData requestData, String message, Throwable exception) {
 

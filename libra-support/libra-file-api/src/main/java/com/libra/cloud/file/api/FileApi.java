@@ -20,8 +20,6 @@ public interface FileApi {
     /**
      * 获取文件详细信息
      *
-     * @author fengshuonan
-     * @Date 2018/7/27 下午3:43
      */
     @RequestMapping(value = "/getFileInfo", method = RequestMethod.POST)
     Fileinfo getFileInfo(@RequestParam("fileId") Long fileId) throws FileApiServiceException;
@@ -29,8 +27,6 @@ public interface FileApi {
     /**
      * 存储文件
      *
-     * @author fengshuonan
-     * @Date 2018/7/27 下午3:40
      */
     @RequestMapping(value = "/uploadFileAndSaveFileInfo", method = RequestMethod.POST)
     String uploadFileAndSaveFileInfo(@RequestBody FileByteInfo byteInfo,
@@ -40,8 +36,6 @@ public interface FileApi {
     /**
      * 获取文件的url通过文件id
      *
-     * @author fengshuonan
-     * @Date 2018/7/27 下午3:59
      */
     @RequestMapping(value = "/getFileUrlById", method = RequestMethod.POST)
     String getFileUrlById(@RequestParam("fileId") Long fileId) throws FileApiServiceException;
@@ -49,8 +43,6 @@ public interface FileApi {
     /**
      * 获取文件信息列表
      *
-     * @author fengshuonan
-     * @Date 2018/7/27 下午4:13
      */
     @RequestMapping(value = "/getFileInfoList", method = RequestMethod.POST)
     List<Fileinfo> getFileInfoList(@RequestBody Fileinfo fileinfo,

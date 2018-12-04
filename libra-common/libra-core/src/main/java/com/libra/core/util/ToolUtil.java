@@ -34,9 +34,6 @@ public class ToolUtil {
 
     /**
      * 获取随机字符,自定义长度
-     *
-     * @author fengshuonan
-     * @Date 2018/3/18 21:55
      */
     public static String getRandomString(int length) {
         String base = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -60,9 +57,6 @@ public class ToolUtil {
 
     /**
      * md5加密(加盐)
-     *
-     * @author fengshuonan
-     * @Date 2018/3/18 21:56
      */
     public static String md5Hex(String password, String salt) {
         return md5Hex(password + salt);
@@ -70,9 +64,6 @@ public class ToolUtil {
 
     /**
      * md5加密(不加盐)
-     *
-     * @author fengshuonan
-     * @Date 2018/3/18 21:56
      */
     public static String md5Hex(String str) {
         try {
@@ -93,9 +84,6 @@ public class ToolUtil {
 
     /**
      * 过滤掉掉字符串中的空白
-     *
-     * @author fengshuonan
-     * @Date 2018/3/22 15:16
      */
     public static String removeWhiteSpace(String value) {
         if (EmptyUtil.isEmpty(value)) {
@@ -120,10 +108,6 @@ public class ToolUtil {
 
     /**
      * 获取异常的具体信息
-     *
-     * @author fengshuonan
-     * @Date 2017/3/30 9:21
-     * @version 2.0
      */
     public static String getExceptionMsg(Throwable e) {
         StringWriter sw = new StringWriter();
@@ -141,9 +125,6 @@ public class ToolUtil {
 
     /**
      * 获取应用名称
-     *
-     * @author fengshuonan
-     * @Date 2018/5/12 上午10:24
      */
     public static String getApplicationName() {
         try {
@@ -195,9 +176,6 @@ public class ToolUtil {
 
     /**
      * 拷贝属性，为null的不拷贝
-     *
-     * @author fengshuonan
-     * @Date 2018/7/25 下午4:41
      */
     public static void copyProperties(Object source, Object target) {
         BeanUtil.copyProperties(source, target, CopyOptions.create().setIgnoreNullValue(true));
@@ -230,9 +208,6 @@ public class ToolUtil {
 
     /**
      * 把一个数转化为int
-     *
-     * @author fengshuonan
-     * @Date 2017/11/15 下午11:10
      */
     public static Integer toInt(Object val) {
         if (val instanceof Double) {
@@ -246,9 +221,6 @@ public class ToolUtil {
 
     /**
      * 是否为数字
-     *
-     * @author fengshuonan
-     * @Date 2017/11/15 下午11:10
      */
     public static boolean isNum(Object obj) {
         try {
@@ -261,9 +233,6 @@ public class ToolUtil {
 
     /**
      * 获取项目路径
-     *
-     * @author fengshuonan
-     * @Date 2017/11/15 下午11:10
      */
     public static String getWebRootPath(String filePath) {
         try {
@@ -283,9 +252,6 @@ public class ToolUtil {
 
     /**
      * 获取文件后缀名 不包含点
-     *
-     * @author fengshuonan
-     * @Date 2017/11/15 下午11:10
      */
     public static String getFileSuffix(String fileWholeName) {
         if (EmptyUtil.isEmpty(fileWholeName)) {
@@ -319,10 +285,10 @@ public class ToolUtil {
         return DateUtil.formatDateTime(new Date());
     }
 
-    public static void main(String[] arg0){
+    public static void main(String[] arg0) {
         String salt = getSalt();
         System.out.println(salt);
-        String password = md5Hex("111111",salt);
+        String password = md5Hex("111111", salt);
         System.out.println(password);
     }
 }

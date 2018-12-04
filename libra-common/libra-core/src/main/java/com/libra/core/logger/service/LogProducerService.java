@@ -20,17 +20,11 @@ public interface LogProducerService {
 
     /**
      * 发送trace日志
-     *
-     * @author fengshuonan
-     * @Date 2018/5/15 下午7:16
      */
     void sendTraceMsg(SendingTraceLog sendingTraceLog);
 
     /**
      * 发送接口调用时间日志
-     *
-     * @author fengshuonan
-     * @Date 2018/5/15 下午7:16
      */
     void sendTcMsg(SendingTCLog sendingTCLog);
 }

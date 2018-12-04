@@ -87,9 +87,6 @@ public class BaseController {
 
     /**
      * 返回前台文件流
-     *
-     * @author fengshuonan
-     * @date 2017年2月28日 下午2:53:19
      */
     protected ResponseEntity<InputStreamResource> renderFile(String fileName, String filePath) {
         try {
@@ -102,9 +99,6 @@ public class BaseController {
 
     /**
      * 返回前台文件流
-     *
-     * @author fengshuonan
-     * @date 2017年2月28日 下午2:53:19
      */
     protected ResponseEntity<InputStreamResource> renderFile(String fileName, byte[] fileBytes) {
         return renderFile(fileName, new ByteArrayInputStream(fileBytes));

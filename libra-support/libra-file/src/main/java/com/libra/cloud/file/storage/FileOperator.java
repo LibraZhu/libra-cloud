@@ -11,33 +11,21 @@ public interface FileOperator {
 
     /**
      * 判断是否存在文件
-     *
-     * @author fengshuonan
-     * @Date 2018/6/27 下午1:14
      */
     boolean isExistingFile(String fileName);
 
     /**
      * 获取文件字节
-     *
-     * @author fengshuonan
-     * @Date 2018/6/27 下午1:15
      */
     byte[] getFileBytes(String fileName);
 
     /**
      * 存储文件
-     *
-     * @author fengshuonan
-     * @Date 2018/6/27 下午1:16
      */
     void storageFile(String fileName, InputStream inputStream);
 
     /**
      * 存储文件
-     *
-     * @author fengshuonan
-     * @Date 2018/6/27 下午1:16
      */
     void storageFile(String fileName, byte[] bytes);
 
@@ -51,9 +39,6 @@ public interface FileOperator {
 
     /**
      * 获取文件的下载地址（带鉴权的）
-     *
-     * @author fengshuonan
-     * @Date 2018/7/7 上午11:27
      */
     String getFileAuthUrl(String fileFinalName);
 }

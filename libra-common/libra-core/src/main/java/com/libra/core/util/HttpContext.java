@@ -17,9 +17,6 @@ import java.util.Map;
 public class HttpContext {
     /**
      * 获取请求的ip地址
-     *
-     * @author fengshuonan
-     * @Date 2018/7/23 下午3:44
      */
     public static String getIp() {
         HttpServletRequest request = HttpContext.getRequest();
@@ -32,9 +29,6 @@ public class HttpContext {
 
     /**
      * 获取当前请求的Request对象
-     *
-     * @author fengshuonan
-     * @Date 2018/7/23 下午3:44
      */
     public static HttpServletRequest getRequest() {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -47,9 +41,6 @@ public class HttpContext {
 
     /**
      * 获取当前请求的Response对象
-     *
-     * @author fengshuonan
-     * @Date 2018/7/23 下午3:44
      */
     public static HttpServletResponse getResponse() {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -62,9 +53,6 @@ public class HttpContext {
 
     /**
      * 获取所有请求的值
-     *
-     * @author fengshuonan
-     * @Date 2018/7/23 下午3:44
      */
     public static Map<String, String> getRequestParameters() {
         HashMap<String, String> values = new HashMap<>();

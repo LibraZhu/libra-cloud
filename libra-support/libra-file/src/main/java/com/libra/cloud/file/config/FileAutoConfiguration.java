@@ -25,9 +25,6 @@ import org.springframework.context.annotation.Configuration;
 public class FileAutoConfiguration {
     /**
      * 阿里云配置
-     *
-     * @author fengshuonan
-     * @Date 2018/6/27 下午2:21
      */
     @Bean
     @ConfigurationProperties(prefix = ConfigPrefixConstants.ALIYUN_OSS)
@@ -37,9 +34,6 @@ public class FileAutoConfiguration {
 
     /**
      * oss客户端sdk
-     *
-     * @author fengshuonan
-     * @Date 2018/6/27 下午6:10
      */
     @Bean
     public OSSClient ossClient(OssProperteis ossProperteis) {
@@ -51,9 +45,6 @@ public class FileAutoConfiguration {
 
     /**
      * 文件操作工具
-     *
-     * @author fengshuonan
-     * @Date 2018/6/27 下午2:21
      */
     @Bean
     public FileOperator fileOperator(OSSClient ossClient, OssProperteis ossProperteis) {

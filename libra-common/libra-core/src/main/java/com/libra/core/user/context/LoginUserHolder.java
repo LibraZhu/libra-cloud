@@ -20,9 +20,6 @@ public class LoginUserHolder {
 
     /**
      * 初始化
-     *
-     * @author fengshuonan
-     * @Date 2018/7/4 下午12:31
      */
     public static void init() {
         OPEN_UP_FLAG.set(true);
@@ -30,9 +27,6 @@ public class LoginUserHolder {
 
     /**
      * 这个方法如果OPEN_UP_FLAG标识没开启，则会set失效
-     *
-     * @author fengshuonan
-     * @Date 2018/7/4 上午11:09
      */
     public static void set(AbstractLoginUser abstractLoginUser) {
         Boolean openUpFlag = OPEN_UP_FLAG.get();
@@ -45,9 +39,6 @@ public class LoginUserHolder {
 
     /**
      * 这个方法如果OPEN_UP_FLAG标识没开启，则会get值为null
-     *
-     * @author fengshuonan
-     * @Date 2018/7/4 上午11:09
      */
     public static AbstractLoginUser get() {
         Boolean openUpFlag = OPEN_UP_FLAG.get();
@@ -60,9 +51,6 @@ public class LoginUserHolder {
 
     /**
      * 删除保存的用户
-     *
-     * @author fengshuonan
-     * @Date 2018/7/24 下午3:28
      */
     public static void remove() {
         OPEN_UP_FLAG.remove();

@@ -46,8 +46,6 @@ public class ResourceCollectService {
      *
      * @param code         可以为应用的标识(前缀为appType-),可以为控制器标识(前缀为conType-),也可以是资源标识(前缀为resType-)
      * @param resourceName 资源名称
-     * @author fengshuonan
-     * @Date 2018/1/11 14:34
      */
     public List<ResourceDefinition> getAllAppResourceList(String code, String resourceName) {
         if (StrUtil.isBlank(code)) {
@@ -69,9 +67,6 @@ public class ResourceCollectService {
 
     /**
      * 获取资源树
-     *
-     * @author fengshuonan
-     * @Date 2018/1/11 14:59
      */
     public List<ResourceTreeNode> getResourceTree() {
         ArrayList<ResourceTreeNode> resourceTreeNodes = new ArrayList<>();

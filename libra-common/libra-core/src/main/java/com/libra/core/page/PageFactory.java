@@ -41,9 +41,6 @@ public class PageFactory {
 
     /**
      * 默认规则的分页
-     *
-     * @author fengshuonan
-     * @Date 2018/7/23 下午4:11
      */
     public static <T> Page<T> defaultPage() {
 
@@ -90,9 +87,6 @@ public class PageFactory {
 
     /**
      * 自定义参数的分页
-     *
-     * @author fengshuonan
-     * @Date 2018/7/23 下午4:11
      */
     public static <T> Page<T> createPage(PageQuery pageQuery) {
 
@@ -130,9 +124,6 @@ public class PageFactory {
 
     /**
      * 获取参数值，通过param或从requestBody中取
-     *
-     * @author fengshuonan
-     * @Date 2018/7/25 下午1:12
      */
     private static String getFieldValue(HttpServletRequest request, String fieldName) {
         String parameter = request.getParameter(fieldName);

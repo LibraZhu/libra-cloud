@@ -40,9 +40,6 @@ public class FileinfoService extends ServiceImpl<FileinfoMapper, Fileinfo> {
 
     /**
      * 获取文件详细信息
-     *
-     * @author fengshuonan
-     * @Date 2018/7/27 下午3:43
      */
     public Fileinfo getFileInfo(Long fileId) {
         Fileinfo fileinfo = this.selectById(fileId);
@@ -55,9 +52,6 @@ public class FileinfoService extends ServiceImpl<FileinfoMapper, Fileinfo> {
 
     /**
      * 存储文件
-     *
-     * @author fengshuonan
-     * @Date 2018/7/27 下午3:40
      */
     @Transactional(rollbackFor = Exception.class)
     public String uploadFileAndSaveFileInfo(InputStream inputStream, String fileName, Long size) {
@@ -83,9 +77,6 @@ public class FileinfoService extends ServiceImpl<FileinfoMapper, Fileinfo> {
 
     /**
      * 获取文件的url通过文件id
-     *
-     * @author fengshuonan
-     * @Date 2018/7/27 下午3:59
      */
     public String getFileUrlById(Long fileId) {
         if (EmptyUtil.isEmpty(fileId)) {
@@ -101,9 +92,6 @@ public class FileinfoService extends ServiceImpl<FileinfoMapper, Fileinfo> {
 
     /**
      * 获取文件信息列表
-     *
-     * @author fengshuonan
-     * @Date 2018/7/27 下午4:13
      */
     public List<Fileinfo> getFileInfoList(Page page, Fileinfo fileinfo) {
         if (page == null) {
