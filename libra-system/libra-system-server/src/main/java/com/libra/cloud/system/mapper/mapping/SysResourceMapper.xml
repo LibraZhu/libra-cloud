@@ -29,11 +29,28 @@
     <!-- 根据用户id获取所属的资源 -->
     <select id="selectUserResourceByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from sys_resource r where r.CODE in (
         select rr.CODE from sys_role_resource rr where rr.ROLE_ID in (
         select ur.ROLE_ID from sys_user_role ur where ur.USER_ID=#{userId,jdbcType=INTEGER}
         )
+        )
+    </select>
+
+    <!-- 根据角色id获取所属的资源 -->
+    <select id="selectRoleResourceByRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_resource r where r.CODE in (
+        select rr.CODE from sys_role_resource rr where rr.ROLE_ID=#{roleId,jdbcType=INTEGER}
+        )
+    </select>
+
+    <!-- 根据角色id获取所属的资源Url -->
+    <select id="selectRoleResourceUrlByRoleId" parameterType="java.lang.Integer" resultMap="java.lang.String">
+        select r.CODE
+        from sys_resource r where r.CODE in (
+        select rr.CODE from sys_role_resource rr where rr.ROLE_ID=#{roleId,jdbcType=INTEGER}
         )
     </select>
 </mapper>

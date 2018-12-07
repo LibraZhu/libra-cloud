@@ -1,5 +1,7 @@
 package com.libra.cloud.dict.config;
 
+import com.libra.cloud.dict.controller.DictController;
+import com.libra.cloud.dict.controller.DictTypeController;
 import com.libra.cloud.dict.db.DictInitializer;
 import com.libra.cloud.dict.db.DictTypeInitializer;
 import com.libra.cloud.dict.provider.DictServiceProvider;
@@ -30,18 +32,18 @@ public class DictAutoConfiguration {
         return new DictTypeInitializer();
     }
 
-//    /**
-//     * 控制器
-//     */
-//    @Bean
-//    public DictController dictController() {
-//        return new DictController();
-//    }
-//
-//    @Bean
-//    public DictTypeController dictTypeController() {
-//        return new DictTypeController();
-//    }
+    /**
+     * 控制器
+     */
+    @Bean
+    public DictController dictController() {
+        return new DictController();
+    }
+
+    @Bean
+    public DictTypeController dictTypeController() {
+        return new DictTypeController();
+    }
 
     /**
      * 服务层

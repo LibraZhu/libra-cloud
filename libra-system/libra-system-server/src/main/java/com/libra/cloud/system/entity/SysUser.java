@@ -57,10 +57,10 @@ public class SysUser implements Serializable {
     @TableField("BIRTHDAY")
     private Date birthday;
     /**
-     * 性别（M：男 F：女）
+     * 性别（1：男 2：女）
      */
     @TableField("SEX")
-    private String sex;
+    private Integer sex;
     /**
      * 电子邮件
      */
@@ -144,11 +144,11 @@ public class SysUser implements Serializable {
         this.birthday = birthday;
     }
 
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 

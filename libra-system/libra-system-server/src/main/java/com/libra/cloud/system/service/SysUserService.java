@@ -2,24 +2,27 @@ package com.libra.cloud.system.service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.libra.cloud.system.api.context.LoginUser;
-import com.libra.cloud.system.api.exception.enums.AuthExceptionEnum;
 import com.libra.cloud.system.constants.SystemConstants;
+import com.libra.cloud.system.context.LoginContext;
+import com.libra.cloud.system.context.LoginUser;
 import com.libra.cloud.system.entity.SysResource;
 import com.libra.cloud.system.entity.SysRole;
 import com.libra.cloud.system.entity.SysUser;
+import com.libra.cloud.system.entity.SysUserRole;
+import com.libra.cloud.system.exception.enums.SystemExceptionEnum;
 import com.libra.cloud.system.mapper.SysResourceMapper;
-import com.libra.cloud.system.mapper.SysRoleMapper;
 import com.libra.cloud.system.mapper.SysUserMapper;
+import com.libra.core.exception.RequestEmptyException;
 import com.libra.core.exception.ServiceException;
 import com.libra.core.jwt.utils.JwtTokenUtil;
+import com.libra.core.user.context.LoginUserHolder;
+import com.libra.core.util.EmptyUtil;
 import com.libra.core.util.ToolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -43,10 +46,13 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
     private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
-    private SysRoleMapper sysRoleMapper;
+    private SysRoleService sysRoleService;
 
     @Autowired
-    private SysResourceMapper sysResourceMapper;
+    private SysUserRoleService sysUserRoleService;
+
+    @Autowired
+    private SysResourceService sysResourceService;
 
     /**
      * 用户登录，登录成功返回token
@@ -59,13 +65,13 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
         if (accounts != null && accounts.size() > 0) {
             sysUser = accounts.get(0);
         } else {
-            throw new ServiceException(AuthExceptionEnum.USER_NOT_FOUND);
+            throw new ServiceException(SystemExceptionEnum.USER_NOT_FOUND);
         }
 
         //校验账号密码是否正确
         String md5Hex = ToolUtil.md5Hex(password + sysUser.getSalt());
         if (!md5Hex.equals(sysUser.getPassword())) {
-            throw new ServiceException(AuthExceptionEnum.INVALID_PWD);
+            throw new ServiceException(SystemExceptionEnum.INVALID_PWD);
         }
 
         //生成token
@@ -75,14 +81,14 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
         LoginUser loginUser = new LoginUser();
         loginUser.setAccountId(sysUser.getUserId());
         //角色
-        List<SysRole> roleList = sysRoleMapper.selectUserRoleByUserId(sysUser.getUserId());
+        List<SysRole> roleList = getUserRoleList(sysUser.getUserId());
         Set<Integer> roleIdList = new HashSet<>();
         for (SysRole role : roleList) {
             roleIdList.add(role.getRoleId());
         }
         loginUser.setRoleIds(roleIdList);
         //资源
-        List<SysResource> resourceList = sysResourceMapper.selectUserResourceByUserId(sysUser.getUserId());
+        List<SysResource> resourceList = getUserResourceList(sysUser.getUserId());
         Set<String> resourceUrlList = new HashSet<>();
         for (SysResource resource : resourceList) {
             resourceUrlList.add(resource.getUrl());
@@ -132,5 +138,132 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
         } else {
             return null;
         }
+    }
+
+    /**
+     * 添加用户
+     *
+     * @param sysUser 用户
+     */
+    public void addUser(SysUser sysUser) {
+        if (EmptyUtil.isOneEmpty(sysUser, sysUser.getAccount(), sysUser.getPassword())) {
+            throw new RequestEmptyException();
+        }
+        SysUser select = new SysUser();
+        select.setAccount(sysUser.getAccount());
+        if (baseMapper.selectOne(select) != null) {
+            throw new ServiceException(SystemExceptionEnum.USER_EXIST);
+        }
+        insert(sysUser);
+    }
+
+    /**
+     * 修改用户
+     *
+     * @param sysUser 用户
+     */
+    public void updateUser(SysUser sysUser) {
+        if (EmptyUtil.isOneEmpty(sysUser, sysUser.getAccount(), sysUser.getPassword())) {
+            throw new RequestEmptyException();
+        }
+        SysUser oldUser = baseMapper.selectById(sysUser.getUserId());
+        if (oldUser == null) {
+            throw new ServiceException(SystemExceptionEnum.USER_NOT_FOUND);
+        }
+        ToolUtil.copyProperties(sysUser, oldUser);
+        updateById(oldUser);
+    }
+
+    /**
+     * 删除用户
+     *
+     * @param userId 用户id
+     */
+    public void deleteUser(Integer userId) {
+        if (EmptyUtil.isEmpty(userId)) {
+            throw new RequestEmptyException();
+        }
+        deleteById(userId);
+    }
+
+    /**
+     * 获取用户列表
+     *
+     * @return 用户列表
+     */
+    public List<SysUser> getUserList() {
+        return baseMapper.selectList(new EntityWrapper<>());
+    }
+
+    /**
+     * 添加用户角色
+     *
+     * @param userId 用户id
+     * @param roleId 角色id
+     */
+    public void addUserRole(Integer userId, Integer roleId) {
+        if (EmptyUtil.isOneEmpty(userId, roleId)) {
+            throw new RequestEmptyException();
+        }
+        if (baseMapper.selectById(userId) == null) {
+            throw new ServiceException(SystemExceptionEnum.USER_NOT_FOUND);
+        }
+        if (sysRoleService.selectById(roleId) == null) {
+            throw new ServiceException(SystemExceptionEnum.ROLE_NOT_FOUND);
+        }
+        SysUserRole sysUserRole = new SysUserRole();
+        sysUserRole.setRoleId(roleId);
+        sysUserRole.setUserId(userId);
+        if (sysUserRoleService.getSysUserRole(userId, roleId) == null) {
+            sysUserRoleService.insert(sysUserRole);
+        }
+    }
+
+    /**
+     * 删除用户角色
+     *
+     * @param userId 用户
+     * @param roleId 角色
+     */
+    public void deleteUserRole(Integer userId, Integer roleId) {
+        if (EmptyUtil.isOneEmpty(userId, roleId)) {
+            throw new RequestEmptyException();
+        }
+        SysUserRole sysUserRole = sysUserRoleService.getSysUserRole(userId, roleId);
+        if (sysUserRole != null) {
+            sysUserRoleService.deleteById(sysUserRole.getUserRoleId());
+        }
+    }
+
+    /**
+     * 删除用户所有角色
+     *
+     * @param userId 用户
+     */
+    public void deleteUserAllRole(Integer userId) {
+        if (EmptyUtil.isOneEmpty(userId)) {
+            throw new RequestEmptyException();
+        }
+        sysUserRoleService.delete(new EntityWrapper<SysUserRole>().eq("USER_ID", userId));
+    }
+
+    /**
+     * 获取用户角色列表
+     *
+     * @param userId 用户id
+     * @return 角色列表
+     */
+    public List<SysRole> getUserRoleList(Integer userId) {
+        return sysRoleService.getRoleList(userId);
+    }
+
+    /**
+     * 获取用户资源列表
+     *
+     * @param userId 用户id
+     * @return 资源列表
+     */
+    public List<SysResource> getUserResourceList(Integer userId) {
+        return sysResourceService.getUserResourceList(userId);
     }
 }

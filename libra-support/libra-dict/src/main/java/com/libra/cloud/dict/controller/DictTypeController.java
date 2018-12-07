@@ -9,7 +9,6 @@ import com.libra.core.reqres.request.RequestData;
 import com.libra.core.reqres.response.ResponseData;
 import com.libra.scanner.annotation.ApiResource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class DictTypeController {
     /**
      * 获取字典类型列表
      */
-    @PostMapping(name = "获取字典类型列表", path = "/getDictTypeList")
+    @ApiResource(name = "获取字典类型列表", path = "/getDictTypeList")
     public ResponseData getDictTypeList(RequestData requestData) {
         DictTypeInfo dictTypeInfo = requestData.parse(DictTypeInfo.class);
         Page<DictTypeInfo> page = PageFactory.defaultPage();
@@ -41,7 +40,7 @@ public class DictTypeController {
     /**
      * 添加字典类型
      */
-    @PostMapping(name = "添加字典类型", path = "/addDictType")
+    @ApiResource(name = "添加字典类型", path = "/addDictType")
     public ResponseData addDictType(RequestData requestData) {
         DictType dictType = requestData.parse(DictType.class);
         this.dictTypeService.addDictType(dictType);
@@ -51,7 +50,7 @@ public class DictTypeController {
     /**
      * 修改字典类型
      */
-    @PostMapping(name = "修改字典类型", path = "/updateDictType")
+    @ApiResource(name = "修改字典类型", path = "/updateDictType")
     public ResponseData updateDictType(RequestData requestData) {
         DictType dictType = requestData.parse(DictType.class);
         this.dictTypeService.updateDictType(dictType);
@@ -61,7 +60,7 @@ public class DictTypeController {
     /**
      * 删除字典类型
      */
-    @PostMapping(name = "删除字典类型", path = "/deleteDictType")
+    @ApiResource(name = "删除字典类型", path = "/deleteDictType")
     public ResponseData deleteDictType(RequestData requestData) {
         Long dictTypeId = requestData.getLong("dictTypeId");
         this.dictTypeService.deleteDictType(dictTypeId);
@@ -71,7 +70,7 @@ public class DictTypeController {
     /**
      * 修改字典类型状态
      */
-    @PostMapping(name = "修改字典类型状态", path = "/updateStatus")
+    @ApiResource(name = "修改字典类型状态", path = "/updateStatus")
     public ResponseData updateStatus(RequestData requestData) {
         Long dictTypeId = requestData.getLong("dictTypeId");
         this.dictTypeService.deleteDictType(dictTypeId);

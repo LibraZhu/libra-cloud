@@ -1,4 +1,4 @@
-package com.libra.cloud.system.api.exception;
+package com.libra.cloud.system.exception;
 
 import com.libra.core.exception.ApiServiceException;
 import com.libra.core.exception.BaseExceptionEnum;

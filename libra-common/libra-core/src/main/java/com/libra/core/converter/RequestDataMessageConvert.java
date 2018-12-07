@@ -4,6 +4,7 @@ import cn.hutool.core.io.IoUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.libra.core.reqres.request.RequestData;
+import com.libra.core.reqres.response.ResponseData;
 import com.libra.core.util.HttpContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpInputMessage;
@@ -43,7 +44,7 @@ public class RequestDataMessageConvert extends AbstractGenericHttpMessageConvert
     @Override
     public boolean canWrite(Type type, Class<?> clazz, MediaType mediaType) {
         if (type instanceof Class) {
-            return ((Class) type).isAssignableFrom(RequestData.class);
+            return ((Class) type).isAssignableFrom(ResponseData.class);
         } else {
             return false;
         }
