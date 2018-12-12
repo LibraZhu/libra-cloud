@@ -1,6 +1,6 @@
 package com.libra.cloud.gateway.consumer;
 
-import com.libra.core.api.AuthService;
+import com.libra.cloud.system.api.AuthService;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**

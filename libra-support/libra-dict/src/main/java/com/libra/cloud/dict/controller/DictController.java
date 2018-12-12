@@ -30,7 +30,7 @@ public class DictController {
      * 添加字典
      */
     @ApiResource(name = "添加字典", path = "/addDict")
-    public ResponseData addDictType(RequestData requestData) {
+    public ResponseData addDict(RequestData requestData) {
         Dict dict = requestData.parse(Dict.class);
         this.dictService.addDict(dict);
         return ResponseData.success();

@@ -1,5 +1,6 @@
 package com.libra.core.user;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -13,9 +14,14 @@ import java.util.Set;
  */
 public interface AbstractLoginUser {
     /**
-     * 获取用户唯一id
+     * 获取用户id
      */
-    <T> T getUserUniqueId();
+    <T> T getUserId();
+
+    /**
+     * 获取用户
+     */
+    <T> T getUser();
 
     /**
      * 获取用户唯一id
@@ -28,7 +34,7 @@ public interface AbstractLoginUser {
     <T> Set<T> getRoleIds();
 
     /**
-     * 角色编码集合
+     * 获取角色code的集合
      */
     <T> Set<T> getRoleCodes();
 

@@ -1,5 +1,7 @@
 package com.libra.core.util;
 
+import com.libra.core.constants.Constants;
+import com.libra.core.exception.ServiceException;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -67,5 +69,24 @@ public class HttpContext {
             values.put(paramName, paramValue);
         }
         return values;
+    }
+
+    /**
+     * 获取token
+     *
+     * @return 获取token
+     */
+    public static String getToken() {
+        HttpServletRequest request = getRequest();
+        String authToken = request.getHeader(Constants.REQUEST_AUTH_HEADER);
+        if (EmptyUtil.isEmpty(authToken)) {
+            //如果header中没有token，则检查请求参数中是否带token
+            authToken = request.getParameter("token");
+        } else {
+            if (authToken.startsWith("Bearer ")) {
+                authToken = authToken.substring("Bearer ".length());
+            }
+        }
+        return authToken;
     }
 }

@@ -7,6 +7,10 @@ package com.libra.core.constants;
  */
 public interface Constants {
     /**
+     * 鉴权请求头名称
+     */
+    String REQUEST_AUTH_HEADER = "Authorization";
+    /**
      * 请求号header标识
      */
     String REQUEST_NO_HEADER_NAME = "Request-No";

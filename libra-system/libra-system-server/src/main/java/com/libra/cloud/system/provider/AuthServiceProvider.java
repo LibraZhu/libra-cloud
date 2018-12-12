@@ -1,7 +1,7 @@
 package com.libra.cloud.system.provider;
 
-import com.libra.core.api.AuthService;
-import com.libra.cloud.system.context.LoginUser;
+import com.libra.cloud.system.api.AuthService;
+import com.libra.cloud.system.api.context.LoginUser;
 import com.libra.cloud.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -20,18 +20,8 @@ public class AuthServiceProvider implements AuthService {
     private SysUserService sysUserService;
 
     @Override
-    public String login(@RequestParam("account") String account, @RequestParam("password") String password) {
-        return sysUserService.login(account, password);
-    }
-
-    @Override
     public boolean checkToken(@RequestParam("token") String token) {
         return sysUserService.checkToken(token);
-    }
-
-    @Override
-    public void logout(@RequestParam("token") String token) {
-        sysUserService.logout(token);
     }
 
     @Override

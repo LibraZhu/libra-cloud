@@ -34,8 +34,8 @@ public class JwtTokenFilter extends ZuulFilter {
         HttpServletRequest request = currentContext.getRequest();
 
         //登陆接口和验证token放过资源过滤
-        if (request.getServletPath().equals(AuthConstants.AUTH_ACTION_URL) ||
-                request.getServletPath().equals(AuthConstants.VALIDATE_TOKEN_URL)) {
+        if (request.getServletPath().contains(AuthConstants.AUTH_ACTION_URL) ||
+                request.getServletPath().contains(AuthConstants.VALIDATE_TOKEN_URL)) {
             return false;
         } else {
             return true;

@@ -126,7 +126,7 @@ public class LogUtil {
                     AbstractLoginContext bean = SpringContextHolder.getBean(AbstractLoginContext.class);
                     AbstractLoginUser loginUser = bean.getLoginUser();
                     log.setAppCode(loginUser.getAppId().toString());
-                    log.setAccountId(loginUser.getUserUniqueId() != null ? loginUser.getUserUniqueId().toString() : null);
+                    log.setAccountId(loginUser.getUserId() != null ? loginUser.getUserId().toString() : null);
                 } catch (Exception e) {
                     if (logger.isDebugEnabled()) {
                         logger.debug("当前没有登录用户！");

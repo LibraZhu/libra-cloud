@@ -6,23 +6,15 @@ package com.libra.cloud.gateway.constants;
  * @description 鉴权相关的常量
  */
 public interface AuthConstants {
-    /**
-     * 鉴权请求头名称
-     */
-    String AUTH_HEADER = "Authorization";
 
     /**
      * 鉴权地址
      */
-    String AUTH_ACTION_URL = "/auth/login";
+    String AUTH_ACTION_URL = "/user/login";
 
     /**
      * 检验token是否正确
      */
-    String VALIDATE_TOKEN_URL = "/auth/validateToken";
+    String VALIDATE_TOKEN_URL = "/api/auth/checkToken";
 
-    /**
-     * 退出接口
-     */
-    String LOGOUT_URL = "/auth/logout";
 }

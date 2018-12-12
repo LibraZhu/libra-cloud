@@ -232,9 +232,8 @@ public class ApiResourceScaner implements BeanPostProcessor {
                 result = "";
             }
         }
-
-        //拼接spring.application.name
-        result = "/" + springApplicationName + result;
+//        //拼接spring.application.name
+//        result = "/" + springApplicationName + result;
         return result;
     }
 

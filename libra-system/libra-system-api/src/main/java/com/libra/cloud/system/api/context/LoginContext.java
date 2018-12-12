@@ -1,6 +1,6 @@
-package com.libra.cloud.system.context;
+package com.libra.cloud.system.api.context;
 
-import com.libra.core.api.AuthService;
+import com.libra.cloud.system.api.AuthService;
 import com.libra.core.exception.CoreExceptionEnum;
 import com.libra.core.exception.ServiceException;
 import com.libra.core.user.AbstractLoginUser;
@@ -44,17 +44,11 @@ public class LoginContext implements AbstractLoginContext {
         }
 
         //如果请求是在http环境下，则有request对象
-        String authorization = request.getHeader("Authorization");
-        if (EmptyUtil.isNotEmpty(authorization)) {
-            return authorization;
-        } else {
-            String token = request.getParameter("token");
-            if (EmptyUtil.isNotEmpty(token)) {
-                return token;
-            } else {
-                throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
-            }
+        String token = HttpContext.getToken();
+        if (EmptyUtil.isEmpty(token)) {
+            throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
         }
+        return token;
     }
 
     /**
@@ -70,18 +64,6 @@ public class LoginContext implements AbstractLoginContext {
         } else {
             String token = getCurrentUserToken();
             return (T) this.authService.getLoginUserByToken(token);
-        }
-    }
-
-    /**
-     * 获取当前登录用户的账户id
-     */
-    public Long getUserAccountId() {
-        AbstractLoginUser abstractLoginUser = this.getLoginUser();
-        if (abstractLoginUser == null) {
-            return null;
-        } else {
-            return abstractLoginUser.getUserUniqueId();
         }
     }
 }

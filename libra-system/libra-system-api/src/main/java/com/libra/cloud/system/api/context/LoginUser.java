@@ -1,8 +1,10 @@
-package com.libra.cloud.system.context;
+package com.libra.cloud.system.api.context;
 
+import com.libra.cloud.system.api.entity.SysUser;
 import com.libra.core.user.AbstractLoginUser;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -12,11 +14,15 @@ import java.util.Set;
  */
 @SuppressWarnings("ALL")
 @Data
-public class LoginUser implements AbstractLoginUser {
+public class LoginUser implements AbstractLoginUser, Serializable {
     /**
      * 账号id
      */
-    private Integer accountId;
+    private Integer userId;
+    /**
+     * 账号
+     */
+    private SysUser user;
 
     /**
      * 应用id
@@ -27,11 +33,10 @@ public class LoginUser implements AbstractLoginUser {
      * 角色id集合
      */
     private Set<Integer> roleIds;
-
     /**
-     * 角色编码集合
+     * 角色code集合
      */
-    private Set<Long> roleCodes;
+    private Set<String> roleCodes;
 
     /**
      * 可用资源集合
@@ -39,8 +44,13 @@ public class LoginUser implements AbstractLoginUser {
     private Set<String> resourceUrls;
 
     @Override
-    public Integer getUserUniqueId() {
-        return accountId;
+    public Integer getUserId() {
+        return userId;
+    }
+
+    @Override
+    public SysUser getUser() {
+        return user;
     }
 
     @Override
@@ -54,7 +64,7 @@ public class LoginUser implements AbstractLoginUser {
     }
 
     @Override
-    public Set<Long> getRoleCodes() {
+    public Set<String> getRoleCodes() {
         return roleCodes;
     }
 

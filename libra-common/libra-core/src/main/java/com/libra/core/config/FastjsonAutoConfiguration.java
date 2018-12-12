@@ -6,6 +6,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.ValueFilter;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.libra.core.reqres.response.ErrorResponseData;
 import com.libra.core.reqres.response.ResponseData;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -108,6 +109,6 @@ public class FastjsonAutoConfiguration {
             }
         };
 
-        fastJsonConfig.setSerializeFilters(nullValueFilter, longValueFilter);
+        fastJsonConfig.setSerializeFilters(nullValueFilter);
     }
 }

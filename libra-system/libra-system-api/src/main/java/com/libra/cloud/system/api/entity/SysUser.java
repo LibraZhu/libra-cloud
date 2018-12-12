@@ -1,4 +1,4 @@
-package com.libra.cloud.system.entity;
+package com.libra.cloud.system.api.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;

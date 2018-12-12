@@ -48,7 +48,7 @@ public class SysRoleController {
         return ResponseData.success(sysRoleService.getRoleList());
     }
 
-    @ApiResource(name = "获取用户资源列表", path = "/resourceList")
+    @ApiResource(name = "获取角色资源列表", path = "/resourceList")
     public ResponseData getRoleResourceList(RequestData requestData) {
         Integer roleId = requestData.getInteger("roleId");
         return ResponseData.success(sysResourceService.getRoleResourceList(roleId));

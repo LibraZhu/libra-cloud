@@ -14,7 +14,7 @@ import java.util.Set;
  * @date 2018/11/30
  * @description 系统管理服务端提供的远程服务
  */
-@RequestMapping("/api/resourceService")
+@RequestMapping("/api/resource")
 public interface ResourceService {
     /**
      * 报告业务系统的资源(Resources)到服务器,appCode若重复则会覆盖

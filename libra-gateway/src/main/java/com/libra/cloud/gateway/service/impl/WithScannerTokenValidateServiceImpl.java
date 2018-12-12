@@ -27,35 +27,35 @@ public class WithScannerTokenValidateServiceImpl extends TokenValidateService {
     @Override
     public boolean validateToken(String token, HttpServletRequest request) {
 
-        String requestURI = null;
+        String requestUri = null;
         if (request != null) {
             //获取context-path加servlet-path
-            requestURI = request.getRequestURI();
+            requestUri = request.getRequestURI();
 
-            //如果是zuul开头的url，则去掉zuul再去资源校验
-            if (requestURI.startsWith("/zuul")) {
-                requestURI = requestURI.substring(5);
+            //如果是admin开头的url，则为系统后台
+            if (requestUri.startsWith("/admin")) {
+                requestUri = requestUri.substring(6);
+                //获取当前接口是否需要鉴权
+                ResourceDefinition currentResource = resourceServiceConsumer.getResourceByUrl(requestUri);
+                if (currentResource == null) {
+                    return true;
+                }
+
+                //判断是否需要登录
+                if (currentResource.getRequiredLogin()) {
+
+                    //验证token是否正确
+                    boolean flag = authServiceConsumer.checkToken(token);
+                    if (flag) {
+                        return true;
+                    } else {
+                        throw new ServiceException(AuthExceptionEnum.TOKEN_ERROR);
+                    }
+                } else {
+                    return true;
+                }
             }
         }
-
-        //获取当前接口是否需要鉴权
-        ResourceDefinition currentResource = resourceServiceConsumer.getResourceByUrl(requestURI);
-        if (currentResource == null) {
-            return true;
-        }
-
-        //判断是否需要登录
-        if (currentResource.getRequiredLogin()) {
-
-            //验证token是否正确
-            boolean flag = authServiceConsumer.checkToken(token);
-            if (flag) {
-                return true;
-            } else {
-                throw new ServiceException(AuthExceptionEnum.TOKEN_ERROR);
-            }
-        } else {
-            return true;
-        }
+        return true;
     }
 }

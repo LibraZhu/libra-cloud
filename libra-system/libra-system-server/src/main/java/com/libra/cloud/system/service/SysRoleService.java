@@ -9,6 +9,7 @@ import com.libra.core.exception.RequestEmptyException;
 import com.libra.core.exception.ServiceException;
 import com.libra.core.util.EmptyUtil;
 import com.libra.core.util.ToolUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,8 @@ import java.util.List;
  */
 @Service
 public class SysRoleService extends ServiceImpl<SysRoleMapper, SysRole> {
+    @Autowired
+    SysRoleResourceService sysRoleResourceService;
 
     /**
      * 添加角色
@@ -70,6 +73,7 @@ public class SysRoleService extends ServiceImpl<SysRoleMapper, SysRole> {
             throw new RequestEmptyException();
         }
         deleteById(roleId);
+        sysRoleResourceService.deleteRoleResource(roleId);
     }
 
     /**

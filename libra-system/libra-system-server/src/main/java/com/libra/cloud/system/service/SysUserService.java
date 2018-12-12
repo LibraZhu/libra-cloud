@@ -3,19 +3,16 @@ package com.libra.cloud.system.service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.libra.cloud.system.constants.SystemConstants;
-import com.libra.cloud.system.context.LoginContext;
-import com.libra.cloud.system.context.LoginUser;
+import com.libra.cloud.system.api.context.LoginUser;
 import com.libra.cloud.system.entity.SysResource;
 import com.libra.cloud.system.entity.SysRole;
-import com.libra.cloud.system.entity.SysUser;
+import com.libra.cloud.system.api.entity.SysUser;
 import com.libra.cloud.system.entity.SysUserRole;
 import com.libra.cloud.system.exception.enums.SystemExceptionEnum;
-import com.libra.cloud.system.mapper.SysResourceMapper;
 import com.libra.cloud.system.mapper.SysUserMapper;
 import com.libra.core.exception.RequestEmptyException;
 import com.libra.core.exception.ServiceException;
 import com.libra.core.jwt.utils.JwtTokenUtil;
-import com.libra.core.user.context.LoginUserHolder;
 import com.libra.core.util.EmptyUtil;
 import com.libra.core.util.ToolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,14 +76,17 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
 
         //token放入缓存
         LoginUser loginUser = new LoginUser();
-        loginUser.setAccountId(sysUser.getUserId());
+        loginUser.setUser(sysUser);
         //角色
         List<SysRole> roleList = getUserRoleList(sysUser.getUserId());
         Set<Integer> roleIdList = new HashSet<>();
+        Set<String> roleCodeList = new HashSet<>();
         for (SysRole role : roleList) {
             roleIdList.add(role.getRoleId());
+            roleCodeList.add(role.getName());
         }
         loginUser.setRoleIds(roleIdList);
+        loginUser.setRoleCodes(roleCodeList);
         //资源
         List<SysResource> resourceList = getUserResourceList(sysUser.getUserId());
         Set<String> resourceUrlList = new HashSet<>();
@@ -184,6 +184,7 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
             throw new RequestEmptyException();
         }
         deleteById(userId);
+        deleteUserAllRole(userId);
     }
 
     /**

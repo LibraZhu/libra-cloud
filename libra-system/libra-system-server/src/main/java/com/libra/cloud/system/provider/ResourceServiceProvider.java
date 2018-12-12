@@ -1,7 +1,9 @@
 package com.libra.cloud.system.provider;
 
 import com.libra.cloud.system.entity.SysResource;
+import com.libra.cloud.system.entity.SysRoleResource;
 import com.libra.cloud.system.service.SysResourceService;
+import com.libra.cloud.system.service.SysRoleResourceService;
 import com.libra.core.api.ResourceService;
 import com.libra.core.logger.util.LogUtil;
 import com.libra.core.resouce.ResourceDefinition;
@@ -24,6 +26,8 @@ public class ResourceServiceProvider implements ResourceService {
     ApiResourceFactory apiResourceFactory;
     @Autowired
     SysResourceService sysResourceService;
+    @Autowired
+    SysRoleResourceService sysRoleResourceService;
 
     @Override
     public void reportResources(@RequestParam("appCode") String appCode,
@@ -53,6 +57,7 @@ public class ResourceServiceProvider implements ResourceService {
             }
         }
         sysResourceService.insertOrUpdateBatch(resourceList);
+        sysRoleResourceService.insertOrUpdateAdminResource(resourceList);
     }
 
     @Override
