@@ -191,3 +191,10 @@ code {
 .multiselect--active {
   z-index: 1000 !important;
 }
+
+.el-checkbox+.el-checkbox {
+  margin-left: 0px;
+}
+.el-checkbox {
+  margin-right: 25px;
+}

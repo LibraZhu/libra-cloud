@@ -31,8 +31,7 @@ public class SysUserController {
 
     @ApiResource(name = "用户登出", path = "/logout")
     public ResponseData logout(RequestData requestData) {
-        String token = requestData.getString("token");
-        sysUserService.logout(token);
+        sysUserService.logout(LoginContext.me().getCurrentUserToken());
         return ResponseData.success();
     }
 

@@ -224,13 +224,13 @@
           this.listLoading = false
           this.dialogFormVisible = false
           this.dialogResourceVisible = true
-          this.tempResource.resourceCodeList.length = 0
-          this.checkAll =false
+          this.tempResource.resourceCodeList = []
+          this.checkAll = false
           response.data.forEach(item => {
             this.tempResource.resourceCodeList.push(item.code)
           })
           this.checkAll = this.tempResource.resourceCodeList.length === this.resourceAllCodeList.length;
-          console.log.call(console,"----"+this.tempResource.resourceCodeList.length)
+          console.log.call(console, "----" + this.tempResource.resourceCodeList.length)
         })
       },
       modifyRoleResourceList() {
