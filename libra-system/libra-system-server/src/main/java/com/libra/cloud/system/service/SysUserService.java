@@ -2,11 +2,11 @@ package com.libra.cloud.system.service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.libra.cloud.system.constants.SystemConstants;
 import com.libra.cloud.system.api.context.LoginUser;
+import com.libra.cloud.system.api.entity.SysUser;
+import com.libra.cloud.system.constants.SystemConstants;
 import com.libra.cloud.system.entity.SysResource;
 import com.libra.cloud.system.entity.SysRole;
-import com.libra.cloud.system.api.entity.SysUser;
 import com.libra.cloud.system.entity.SysUserRole;
 import com.libra.cloud.system.exception.enums.SystemExceptionEnum;
 import com.libra.cloud.system.mapper.SysUserMapper;
@@ -20,6 +20,7 @@ import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -145,7 +146,7 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
      *
      * @param sysUser 用户
      */
-    public void addUser(SysUser sysUser) {
+    public SysUser addUser(SysUser sysUser) {
         if (EmptyUtil.isOneEmpty(sysUser, sysUser.getAccount(), sysUser.getPassword())) {
             throw new RequestEmptyException();
         }
@@ -154,7 +155,15 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
         if (baseMapper.selectOne(select) != null) {
             throw new ServiceException(SystemExceptionEnum.USER_EXIST);
         }
+
+        String salt = ToolUtil.getSalt();
+        sysUser.setSalt(salt);
+        sysUser.setPassword(ToolUtil.md5Hex(sysUser.getPassword() + sysUser.getSalt()));
+        sysUser.setCreateTime(new Date());
+        sysUser.setUpdateTime(new Date());
+        sysUser.setStatus(1);
         insert(sysUser);
+        return baseMapper.selectOne(select);
     }
 
     /**
@@ -162,7 +171,7 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
      *
      * @param sysUser 用户
      */
-    public void updateUser(SysUser sysUser) {
+    public SysUser updateUser(SysUser sysUser) {
         if (EmptyUtil.isOneEmpty(sysUser, sysUser.getAccount(), sysUser.getPassword())) {
             throw new RequestEmptyException();
         }
@@ -172,6 +181,7 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
         }
         ToolUtil.copyProperties(sysUser, oldUser);
         updateById(oldUser);
+        return sysUser;
     }
 
     /**

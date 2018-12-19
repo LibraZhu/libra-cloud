@@ -33,7 +33,7 @@ public class SysRoleService extends ServiceImpl<SysRoleMapper, SysRole> {
      *
      * @param sysRole 角色
      */
-    public void addRole(SysRole sysRole) {
+    public SysRole addRole(SysRole sysRole) {
         if (EmptyUtil.isOneEmpty(sysRole, sysRole.getName(), sysRole.getTitle())) {
             throw new RequestEmptyException();
         }
@@ -43,6 +43,7 @@ public class SysRoleService extends ServiceImpl<SysRoleMapper, SysRole> {
             throw new ServiceException(SystemExceptionEnum.ROLE_EXIST);
         }
         insert(sysRole);
+        return baseMapper.selectOne(select);
     }
 
     /**
@@ -50,7 +51,7 @@ public class SysRoleService extends ServiceImpl<SysRoleMapper, SysRole> {
      *
      * @param sysRole 角色
      */
-    public void updateRole(SysRole sysRole) {
+    public SysRole updateRole(SysRole sysRole) {
         if (EmptyUtil.isOneEmpty(sysRole, sysRole.getRoleId())) {
             throw new RequestEmptyException();
         }
@@ -61,6 +62,7 @@ public class SysRoleService extends ServiceImpl<SysRoleMapper, SysRole> {
         }
         ToolUtil.copyProperties(sysRole, oldRole);
         updateById(oldRole);
+        return oldRole;
     }
 
     /**

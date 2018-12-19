@@ -14,7 +14,7 @@ public class RoleInitializer extends DbInitializer {
     @Override
     public String getTableInitSql() {
         return "CREATE TABLE `sys_role` (\n" +
-                "  `ROLE_ID` int(10) NOT NULL COMMENT '主键id',\n" +
+                "  `ROLE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',\n" +
                 "  `NAME` varchar(45) DEFAULT NULL COMMENT '名字',\n" +
                 "  `TITLE` varchar(45) DEFAULT NULL COMMENT '标题',\n" +
                 "  `DESCRIPTION` varchar(255) DEFAULT NULL COMMENT '描述',\n" +

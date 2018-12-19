@@ -13,7 +13,7 @@ public class DictTypeInitializer extends DbInitializer {
     @Override
     public String getTableInitSql() {
         return "CREATE TABLE `sys_dict_type` (\n" +
-                "  `DICT_TYPE_ID` bigint(20) NOT NULL COMMENT '字典类型id',\n" +
+                "  `DICT_TYPE_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '字典类型id',\n" +
                 "  `DICT_TYPE_CLASS` smallint(1) DEFAULT NULL COMMENT '类型1：业务类型2：系统类型',\n" +
                 "  `DICT_TYPE_CODE` varchar(255) NOT NULL COMMENT '字典类型编码',\n" +
                 "  `DICT_TYPE_NAME` varchar(255) NOT NULL COMMENT '字典类型名称',\n" +

@@ -15,7 +15,7 @@ public class RoleResourceInitializer extends DbInitializer {
     @Override
     public String getTableInitSql() {
         return "CREATE TABLE `sys_role_resource` (\n" +
-                "  `ROLE_RESOURCE_ID` int(10) NOT NULL COMMENT '主键id',\n" +
+                "  `ROLE_RESOURCE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',\n" +
                 "  `ROLE_ID` int(10) NOT NULL COMMENT '角色id',\n" +
                 "  `CODE` varchar(45) NOT NULL COMMENT '资源的标识',\n" +
                 "  PRIMARY KEY (`ROLE_RESOURCE_ID`)\n" +

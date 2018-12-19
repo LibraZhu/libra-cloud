@@ -44,15 +44,13 @@ public class SysUserController {
     @ApiResource(name = "添加用户", path = "/add")
     public ResponseData addUser(RequestData requestData) {
         SysUser sysUser = requestData.parse(SysUser.class);
-        sysUserService.addUser(sysUser);
-        return ResponseData.success();
+        return ResponseData.success(sysUserService.addUser(sysUser));
     }
 
     @ApiResource(name = "更新用户", path = "/update")
     public ResponseData updateUser(RequestData requestData) {
         SysUser sysUser = requestData.parse(SysUser.class);
-        sysUserService.updateUser(sysUser);
-        return ResponseData.success();
+        return ResponseData.success(sysUserService.updateUser(sysUser));
     }
 
     @ApiResource(name = "删除用户", path = "/delete")

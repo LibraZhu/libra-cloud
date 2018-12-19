@@ -31,6 +31,7 @@ public class SysResourceService extends ServiceImpl<SysResourceMapper, SysResour
     /**
      * 获取角色的资源列表
      *
+     * @param roleId 角色id
      * @return 资源列表
      */
     public List<SysResource> getRoleResourceList(Integer roleId) {
@@ -40,6 +41,7 @@ public class SysResourceService extends ServiceImpl<SysResourceMapper, SysResour
     /**
      * 获取角色的资源url列表
      *
+     * @param roleId 角色id
      * @return 资源url列表
      */
     public List<String> getRoleResourceUrlList(Integer roleId) {
@@ -49,6 +51,7 @@ public class SysResourceService extends ServiceImpl<SysResourceMapper, SysResour
     /**
      * 获取用户的资源列表
      *
+     * @param userId 用户id
      * @return 资源列表
      */
     public List<SysResource> getUserResourceList(Integer userId) {

@@ -1,7 +1,6 @@
 package com.libra.cloud.system.provider;
 
 import com.libra.cloud.system.entity.SysResource;
-import com.libra.cloud.system.entity.SysRoleResource;
 import com.libra.cloud.system.service.SysResourceService;
 import com.libra.cloud.system.service.SysRoleResourceService;
 import com.libra.core.api.ResourceService;
@@ -32,8 +31,8 @@ public class ResourceServiceProvider implements ResourceService {
     @Override
     public void reportResources(@RequestParam("appCode") String appCode,
                                 @RequestBody Map<String, Map<String, ResourceDefinition>> resourceDefinitions) {
-        LogUtil.info("上报资源");
         List<SysResource> resourceList = new ArrayList<>();
+        List<String> roleResourceList = new ArrayList<>();
         for (Map<String, ResourceDefinition> map : resourceDefinitions.values()) {
             for (Map.Entry<String, ResourceDefinition> entry : map.entrySet()) {
                 SysResource sysResource = new SysResource();
@@ -54,10 +53,12 @@ public class ResourceServiceProvider implements ResourceService {
                 sysResource.setUpdateTime(new Date());
                 sysResource.setUrl(entry.getValue().getUrl());
                 resourceList.add(sysResource);
+                roleResourceList.add(sysResource.getCode());
             }
         }
+        LogUtil.info("上报资源个数:" + resourceList.size());
         sysResourceService.insertOrUpdateBatch(resourceList);
-        sysRoleResourceService.insertOrUpdateAdminResource(resourceList);
+        sysRoleResourceService.insertOrUpdateAdminResource(roleResourceList);
     }
 
     @Override

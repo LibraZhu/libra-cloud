@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -24,7 +25,7 @@ public class Dict implements Serializable {
     /**
      * 字典id
      */
-    @TableId("DICT_ID")
+    @TableId(value = "DICT_ID",type = IdType.AUTO)
     private Long dictId;
     /**
      * 字典类型id

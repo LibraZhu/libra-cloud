@@ -14,7 +14,7 @@ public class UserRoleInitializer extends DbInitializer {
     @Override
     public String getTableInitSql() {
         return "CREATE TABLE `sys_user_role` (\n" +
-                "  `USER_ROLE_ID` int(10) NOT NULL COMMENT '主键id',\n" +
+                "  `USER_ROLE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',\n" +
                 "  `USER_ID` int(10) NOT NULL COMMENT '用户id',\n" +
                 "  `ROLE_ID` int(10) NOT NULL COMMENT '角色id',\n" +
                 "  PRIMARY KEY (`USER_ROLE_ID`)\n" +
