@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libra.cloud.poetry.mapper.UserThirdMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.libra.cloud.poetry.entity.UserThird">
+        <id column="id" property="id" />
+        <result column="uid" property="uid" />
+        <result column="third_key" property="thirdKey" />
+        <result column="third_type" property="thirdType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, uid, third_key, third_type
+    </sql>
+
+</mapper>

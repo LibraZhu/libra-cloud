@@ -93,19 +93,19 @@ public class PageFactory {
         int pageSize = 20;
         int pageNo = 1;
 
-        if (pageQuery != null && EmptyUtil.isNotEmpty(pageQuery.getPageSize())) {
-            pageSize = pageQuery.getPageSize();
-        }
-
-        if (pageQuery != null && EmptyUtil.isNotEmpty(pageQuery.getPageNo())) {
-            pageNo = pageQuery.getPageNo();
-        }
-
         if (pageQuery == null) {
             Page<T> page = new Page<>(pageNo, pageSize);
             page.setOpenSort(false);
             return page;
         } else {
+            if (EmptyUtil.isNotEmpty(pageQuery.getPageSize())) {
+                pageSize = pageQuery.getPageSize();
+            }
+
+            if (EmptyUtil.isNotEmpty(pageQuery.getPageNo())) {
+                pageNo = pageQuery.getPageNo();
+            }
+
             if (EmptyUtil.isEmpty(pageQuery.getSort())) {
                 Page<T> page = new Page<>(pageNo, pageSize);
                 page.setOpenSort(false);

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: libra-poetry-server
+  profiles:
+    active: @spring.active@
+  cloud:
+    config:
+      discovery:
+        service-id: libra-config
+        enabled: true
+      profile: @spring.active@
+      label: master

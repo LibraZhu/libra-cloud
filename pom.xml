@@ -31,6 +31,7 @@
         <module>libra-system</module>
         <module>libra-gateway</module>
         <module>libra-support</module>
+        <module>libra-poetry</module>
     </modules>
 
     <properties>

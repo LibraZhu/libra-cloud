@@ -29,5 +29,6 @@ public class PageResult<T> implements Serializable {
         this.setTotalRows(page.getTotal());
         this.setPage(page.getCurrent());
         this.setPageSize(page.getSize());
+        this.setRows(page.getRecords());
     }
 }

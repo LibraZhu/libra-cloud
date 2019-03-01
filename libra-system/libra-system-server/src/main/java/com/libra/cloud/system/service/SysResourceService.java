@@ -55,6 +55,6 @@ public class SysResourceService extends ServiceImpl<SysResourceMapper, SysResour
      * @return 资源列表
      */
     public List<SysResource> getUserResourceList(Integer userId) {
-        return baseMapper.selectRoleResourceByRoleId(userId);
+        return baseMapper.selectUserResourceByUserId(userId);
     }
 }
