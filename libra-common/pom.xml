@@ -17,6 +17,7 @@
     <description>微服务核心</description>
 
     <modules>
+        <module>libra-interface</module>
         <module>libra-core</module>
         <module>libra-scanner</module>
         <module>libra-generator</module>

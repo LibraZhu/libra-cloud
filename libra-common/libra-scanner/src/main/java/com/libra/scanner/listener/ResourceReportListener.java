@@ -1,7 +1,7 @@
 package com.libra.scanner.listener;
 
-import com.libra.core.api.ResourceService;
-import com.libra.core.resouce.ResourceDefinition;
+import com.libra.cloud.system.api.ResourceService;
+import com.libra.cloud.system.api.entity.ResourceDefinition;
 import com.libra.scanner.config.properties.ScannerProperties;
 import com.libra.scanner.factory.ApiResourceFactory;
 import org.springframework.beans.BeansException;

@@ -6,11 +6,11 @@ import com.libra.core.logger.context.TraceIdHolder;
 import com.libra.core.logger.entity.SendingCommonLog;
 import com.libra.core.logger.service.LogProducerService;
 import com.libra.core.reqres.request.RequestData;
-import com.libra.core.user.AbstractLoginUser;
-import com.libra.core.user.context.AbstractLoginContext;
 import com.libra.core.util.EmptyUtil;
 import com.libra.core.util.SpringContextHolder;
 import com.libra.core.util.ToolUtil;
+import com.libra.interfaces.user.AbstractLoginUser;
+import com.libra.interfaces.user.context.AbstractLoginContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

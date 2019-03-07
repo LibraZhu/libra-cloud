@@ -1,7 +1,7 @@
 package com.libra.scanner.service;
 
 import cn.hutool.core.util.StrUtil;
-import com.libra.core.resouce.ResourceDefinition;
+import com.libra.cloud.system.api.entity.ResourceDefinition;
 import com.libra.scanner.config.properties.ScannerProperties;
 import com.libra.scanner.factory.ApiResourceFactory;
 import com.libra.scanner.model.ResourceTreeNode;

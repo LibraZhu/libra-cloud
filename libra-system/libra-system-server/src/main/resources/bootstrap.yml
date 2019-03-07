@@ -1,12 +1,12 @@
 spring:
   application:
-    name: libra-system-server
+    name: libra-system
   profiles:
     active: @spring.active@
+  main:
+    allow-bean-definition-overriding: true
   cloud:
-    config:
-      discovery:
-        service-id: libra-config
-        enabled: true
-      profile: @spring.active@
-      label: master
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml

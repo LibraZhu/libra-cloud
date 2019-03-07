@@ -1,6 +1,6 @@
 package com.libra.cloud.gateway.consumer;
 
-import com.libra.core.api.ResourceService;
+import com.libra.cloud.system.api.ResourceService;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**
@@ -8,6 +8,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @date 2018/11/30
  * @description 资源服务的消费者
  */
-@FeignClient("libra-system-server")
+@FeignClient("libra-system")
 public interface ResourceServiceConsumer extends ResourceService {
 }

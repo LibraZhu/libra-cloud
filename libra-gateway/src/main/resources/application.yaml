@@ -1,0 +1,72 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: libra-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+      - id: libra-system
+        uri: lb://libra-system
+        predicates:
+        - Path=/admin/**
+        filters:
+        - StripPrefix=1
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+  aop:
+    proxy-target-class: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 30MB
+  kafka:
+    bootstrap-servers: localhost:9092
+    listener:
+      type: BATCH
+    producer:
+      batchSize: 500
+      keySerializer: org.apache.kafka.common.serialization.StringSerializer
+  boot:
+    admin:
+      client:
+        url: http://localhost:9000
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 300  #创建连接的超时时间 单位：毫秒
+        readTimeout: 3000    #处理请求的超时时间 单位：毫秒
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 2000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false

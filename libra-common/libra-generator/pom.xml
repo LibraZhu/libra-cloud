@@ -13,27 +13,27 @@
     <artifactId>libra-generator</artifactId>
     <description>代码生成器</description>
 
-<dependencies>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-logging</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>com.baomidou</groupId>
-        <artifactId>mybatis-plus-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.velocity</groupId>
-        <artifactId>velocity-engine-core</artifactId>
-        <version>2.0</version>
-    </dependency>
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-    </dependency>
-</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+    </dependencies>
 </project>

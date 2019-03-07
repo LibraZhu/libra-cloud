@@ -1,7 +1,6 @@
 package com.libra.cloud.system.api;
 
-import com.libra.cloud.system.api.context.LoginUser;
-import com.libra.core.user.AbstractLoginUser;
+import com.libra.cloud.system.api.entity.LoginUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -2,7 +2,7 @@ package com.libra.cloud.system.service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.libra.cloud.system.api.context.LoginUser;
+import com.libra.cloud.system.api.entity.LoginUser;
 import com.libra.cloud.system.api.entity.SysUser;
 import com.libra.cloud.system.constants.SystemConstants;
 import com.libra.cloud.system.entity.SysResource;

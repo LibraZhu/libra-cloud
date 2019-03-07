@@ -7,7 +7,7 @@ import java.util.List;
  * @date 2018/11/28
  * @description 构造树节点的接口规范
  */
-public interface  Tree {
+public interface Tree {
     /**
      * 获取节点id
      */

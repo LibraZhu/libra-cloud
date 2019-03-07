@@ -20,13 +20,11 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.1.RELEASE</version>
+        <version>2.1.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modules>
         <module>libra-common</module>
-        <module>libra-center</module>
-        <module>libra-config</module>
         <module>libra-spring-boot-admin</module>
         <module>libra-system</module>
         <module>libra-gateway</module>
@@ -38,14 +36,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+        <spring-cloud-alibaba.version>0.2.1.RELEASE</spring-cloud-alibaba.version>
         <druid.version>1.1.10</druid.version>
         <mybatis-plus.version>2.3</mybatis-plus.version>
         <fastjson.version>1.2.47</fastjson.version>
         <lombok.versin>1.18.0</lombok.versin>
         <jwt.version>0.9.1</jwt.version>
         <hutool.version>4.1.2</hutool.version>
-        <spring.boot.admin.version>2.0.1</spring.boot.admin.version>
+        <spring.boot.admin.version>2.1.2</spring.boot.admin.version>
         <aliyun.oss.version>3.1.0</aliyun.oss.version>
     </properties>
     <dependencyManagement>
@@ -55,6 +54,13 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -195,19 +201,13 @@
 
     <profiles>
         <profile>
-            <id>local</id>
-            <properties>
-                <spring.active>local</spring.active>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
             <id>dev</id>
             <properties>
                 <spring.active>dev</spring.active>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
         <profile>
             <id>test</id>

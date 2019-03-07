@@ -1,14 +1,11 @@
 package com.libra.cloud.gateway.exception;
 
-import com.libra.core.exception.BaseExceptionEnum;
-
 /**
  * @author Libra
  * @date 2018/11/30
  * @description 签名异常
  */
-public enum AuthExceptionEnum implements BaseExceptionEnum {
-    TOKEN_EMPTY(8001, "登录令牌为空，请检查是否已经登录"),
+public enum AuthExceptionEnum {
     TOKEN_ERROR(8002, "token无效"),
     NO_PERMISSION(8003, "没有访问该资源的权限");
 
@@ -21,7 +18,6 @@ public enum AuthExceptionEnum implements BaseExceptionEnum {
 
     private String message;
 
-    @Override
     public Integer getCode() {
         return code;
     }
@@ -30,7 +26,6 @@ public enum AuthExceptionEnum implements BaseExceptionEnum {
         this.code = code;
     }
 
-    @Override
     public String getMessage() {
         return message;
     }

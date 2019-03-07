@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
 import java.util.ArrayList;
+
 /**
  * @author Libra
  * @date 2018/11/30

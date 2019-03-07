@@ -42,7 +42,6 @@ public abstract class DbInitializer {
 
     /**
      * 初始化数据库
-     *
      */
     public void dbInit() {
 
@@ -59,7 +58,6 @@ public abstract class DbInitializer {
 
     /**
      * 初始化表结构
-     *
      */
     private void initTable() {
 
@@ -84,7 +82,6 @@ public abstract class DbInitializer {
 
     /**
      * 校验实体和对应表结构是否有不一致的
-     *
      */
     private void fieldsValidate() {
 
@@ -124,7 +121,6 @@ public abstract class DbInitializer {
 
     /**
      * 反射获取类的所有字段
-     *
      */
     private List<String> getClassFields() {
         Class<?> entityClass = this.getEntityClass();

@@ -1,6 +1,6 @@
 package com.libra.scanner.factory;
 
-import com.libra.core.resouce.ResourceDefinition;
+import com.libra.cloud.system.api.entity.ResourceDefinition;
 
 import java.util.List;
 import java.util.Map;

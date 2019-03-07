@@ -20,12 +20,4 @@
         <module>libra-system-api</module>
         <module>libra-system-server</module>
     </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.libra.cloud</groupId>
-            <artifactId>libra-core</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-    </dependencies>
 </project>

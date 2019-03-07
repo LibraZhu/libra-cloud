@@ -1,4 +1,6 @@
-package ${package.ServiceImpl};
+package
+
+    ${package.ServiceImpl};
 
 import ${package.Entity}.${entity};
 import ${package.Mapper}.${table.mapperName};
@@ -19,7 +21,7 @@ open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperNam
 
         }
 #else
-public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> {
+        public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}>{
 
-}
+        }
 #end

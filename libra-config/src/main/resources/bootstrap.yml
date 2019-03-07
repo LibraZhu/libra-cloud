@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: libra-config
-  profiles:
-    active: @spring.active@
