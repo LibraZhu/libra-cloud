@@ -177,6 +177,7 @@
                     <aggregate>true</aggregate>
                     <charset>UTF-8</charset>
                     <docencoding>UTF-8</docencoding>
+                    <doclint>all,-missing</doclint>
                 </configuration>
                 <executions>
                     <execution>
