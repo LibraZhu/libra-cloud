@@ -130,8 +130,8 @@
     <build>
         <plugins>
             <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
             <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -177,7 +177,6 @@
                     <aggregate>true</aggregate>
                     <charset>UTF-8</charset>
                     <docencoding>UTF-8</docencoding>
-                    <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
                 <executions>
                     <execution>
@@ -185,6 +184,9 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
