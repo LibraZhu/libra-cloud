@@ -20,8 +20,8 @@ spring:
         server-addr: 127.0.0.1:8848
   datasource:
     url: jdbc:mysql://localhost:3306/libra_cloud?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=UTC
-    username: root
-    password: 111111
+    username: mysqllibra
+    password: letinzhu0910Q!
   kafka:
     bootstrap-servers: localhost:9092
     listener:
