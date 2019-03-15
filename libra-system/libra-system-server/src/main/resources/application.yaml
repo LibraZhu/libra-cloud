@@ -36,10 +36,10 @@ spring:
       valueDeserializer: com.libra.core.logger.serizlizer.FastjsonKafkaDeserializer
       auto-offset-reset: earliest
       maxPollRecords: 500
-  boot:
-    admin:
-      client:
-        url: http://localhost:9000
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:9000
 
 mybatis-plus:
   typeAliasesPackage: com.libra.cloud.system.entity

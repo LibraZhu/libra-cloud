@@ -25,10 +25,10 @@
     </parent>
     <modules>
         <module>libra-common</module>
+        <module>libra-support</module>
         <module>libra-spring-boot-admin</module>
         <module>libra-system</module>
         <module>libra-gateway</module>
-        <module>libra-support</module>
         <module>libra-poetry</module>
     </modules>
 
