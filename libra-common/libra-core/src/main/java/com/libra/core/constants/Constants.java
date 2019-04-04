@@ -11,6 +11,10 @@ public interface Constants {
      */
     String REQUEST_AUTH_HEADER = "Authorization";
     /**
+     * 鉴权请求头名称
+     */
+    String REQUEST_TOKEN_PARAM = "token";
+    /**
      * 请求号header标识
      */
     String REQUEST_NO_HEADER_NAME = "Request-No";

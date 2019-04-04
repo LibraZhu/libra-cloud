@@ -100,6 +100,21 @@ public class RequestData implements Serializable {
     }
 
     /**
+     * 获取指定key对应的param值
+     */
+    public JSONObject getParam() {
+        return this.data.getJSONObject("param");
+    }
+
+    /**
+     * 获取指定key对应的JSONObject值
+     */
+    public JSONObject getJSONObject(String key) {
+        return this.data.getJSONObject(key);
+    }
+
+
+    /**
      * 获取指定key对应的string值
      */
     public String getString(String key) {

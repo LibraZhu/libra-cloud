@@ -18,6 +18,7 @@
 
     <modules>
         <module>libra-system-api</module>
-        <module>libra-system-server</module>
+        <module>libra-system-service</module>
+        <module>libra-system-cloud</module>
     </modules>
 </project>

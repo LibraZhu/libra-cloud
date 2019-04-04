@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 public class ResponseData {
-    public static final String DEFAULT_SUCCESS_MESSAGE = "请求成功";
+    public static final String DEFAULT_SUCCESS_MESSAGE = "成功";
 
     public static final String DEFAULT_ERROR_MESSAGE = "网络异常";
 
