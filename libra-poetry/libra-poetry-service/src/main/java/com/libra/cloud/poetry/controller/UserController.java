@@ -23,8 +23,8 @@ public class UserController {
 
     @RequestMapping(name = "用户登录", path = "/login", method = RequestMethod.POST)
     public ResponseData login(RequestData requestData) {
-        String account = requestData.getString("account");
-        String password = requestData.getString("password");
+        String account = requestData.getParam().getString("account");
+        String password = requestData.getParam().getString("password");
         return ResponseData.success(userService.login(account, password));
     }
 

@@ -31,17 +31,20 @@ public class TokenInterceptor implements HandlerInterceptor {
         String requestUri = null;
         if (request != null) {
             requestUri = request.getRequestURI();
+            String authToken = null;
+            if (request instanceof RequestWrapper) {
+                RequestWrapper requestWrapper = (RequestWrapper) request;
+                JSONObject body = JSON.parseObject(requestWrapper.getBody());
+                checkSign(body);
+                try {
+                    authToken = body.getString(Constants.REQUEST_TOKEN_PARAM);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             if (!requestUri.equals("/poetry/user/login")) {
-                String authToken = HttpContext.getToken();
-                if (authToken == null && request instanceof RequestWrapper) {
-                    try {
-                        RequestWrapper requestWrapper = (RequestWrapper) request;
-                        JSONObject body = JSON.parseObject(requestWrapper.getBody());
-                        authToken = body.getString(Constants.REQUEST_TOKEN_PARAM);
-                        checkSign(body);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                if (authToken == null) {
+                    authToken = HttpContext.getToken();
                 }
                 if (authToken == null) {
                     throw new ServiceException(PoetryExceptionEnum.TOKEN_ERROR);
@@ -68,17 +71,23 @@ public class TokenInterceptor implements HandlerInterceptor {
             }
         }
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, Object> entry : body.entrySet()) {
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
             if (value == null) {
                 sb.append(key).append("=").append("&");
+            } else if (value instanceof JSONObject) {
+                sb.append(key).append("=");
+                for (Map.Entry<String, Object> e : ((JSONObject) value).entrySet()) {
+                    sb.append(e.getKey()).append("=").append(JSON.toJSON(e.getValue())).append("&");
+                }
+
             } else {
-                sb.append(key).append("=").append(JSON.toJSON(true)).append("&");
+                sb.append(key).append("=").append(JSON.toJSON(value)).append("&");
             }
         }
 
-        if (!sign.equals(Base64Utils.encodeToString(sb.substring(0, sb.length() - 1).getBytes()))) {
+        if (sign.isEmpty() || !sign.equals(Base64Utils.encodeToString(sb.substring(0, sb.length() - 1).getBytes()))) {
             throw new ServiceException(PoetryExceptionEnum.SIGN_ERROR);
         }
         return true;

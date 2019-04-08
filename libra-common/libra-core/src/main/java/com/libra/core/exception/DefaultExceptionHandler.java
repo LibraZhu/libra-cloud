@@ -50,7 +50,6 @@ public class DefaultExceptionHandler {
      * 拦截业务异常
      */
     @ExceptionHandler(ServiceException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ResponseData notFount(ServiceException e) {
         log.info("业务异常:", e);
