@@ -23,7 +23,7 @@ public class ResourceReportListener implements ApplicationListener<ApplicationRe
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
 
-        System.out.println("发送本系统的所有资源到libra-auth服务开始！");
+        System.out.println("发送本系统的所有资源到libra-system服务开始！");
 
         //获取当前系统的所有资源
         ApiResourceFactory resourceFactory = applicationContext.getBean(ApiResourceFactory.class);
@@ -34,7 +34,7 @@ public class ResourceReportListener implements ApplicationListener<ApplicationRe
         ResourceService resourceService = applicationContext.getBean(ResourceService.class);
         resourceService.reportResources(scannerProperties.getAppCode(), modularResources);
 
-        System.out.println("发送本系统的所有资源到libra-auth服务完毕！");
+        System.out.println("发送本系统的所有资源到libra-system服务完毕！");
     }
 
     @Override

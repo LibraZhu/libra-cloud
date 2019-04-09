@@ -2,14 +2,17 @@ package com.libra.cloud.poetry.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.Feature;
 import com.libra.cloud.poetry.exception.PoetryExceptionEnum;
 import com.libra.cloud.poetry.service.UserService;
 import com.libra.cloud.poetry.wrapper.RequestWrapper;
+import com.libra.core.annotation.IgnoreUserToken;
 import com.libra.core.constants.Constants;
 import com.libra.core.exception.ServiceException;
 import com.libra.core.util.HttpContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Base64Utils;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,31 +31,35 @@ public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String requestUri = null;
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
         if (request != null) {
-            requestUri = request.getRequestURI();
             String authToken = null;
             if (request instanceof RequestWrapper) {
                 RequestWrapper requestWrapper = (RequestWrapper) request;
-                JSONObject body = JSON.parseObject(requestWrapper.getBody());
+                JSONObject body = JSON.parseObject(requestWrapper.getBody(), Feature.OrderedField);
                 checkSign(body);
                 try {
                     authToken = body.getString(Constants.REQUEST_TOKEN_PARAM);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-            if (!requestUri.equals("/poetry/user/login")) {
-                if (authToken == null) {
-                    authToken = HttpContext.getToken();
+                // 配置该注解，说明不进行用户拦截
+                IgnoreUserToken annotation = handlerMethod.getBeanType().getAnnotation(IgnoreUserToken.class);
+                if (annotation == null) {
+                    annotation = handlerMethod.getMethodAnnotation(IgnoreUserToken.class);
                 }
-                if (authToken == null) {
-                    throw new ServiceException(PoetryExceptionEnum.TOKEN_ERROR);
-                }
-                //验证token是否正确
-                boolean check = userService.checkToken(authToken);
-                if (!check) {
-                    throw new ServiceException(PoetryExceptionEnum.TOKEN_ERROR);
+                if (annotation == null) {
+                    if (authToken == null) {
+                        authToken = HttpContext.getToken();
+                    }
+                    if (authToken == null) {
+                        throw new ServiceException(PoetryExceptionEnum.TOKEN_ERROR);
+                    }
+                    //验证token是否正确
+                    boolean check = userService.checkToken(authToken);
+                    if (!check) {
+                        throw new ServiceException(PoetryExceptionEnum.TOKEN_ERROR);
+                    }
                 }
             }
         }

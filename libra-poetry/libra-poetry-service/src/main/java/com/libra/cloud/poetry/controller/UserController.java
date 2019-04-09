@@ -1,6 +1,7 @@
 package com.libra.cloud.poetry.controller;
 
 import com.libra.cloud.poetry.service.UserService;
+import com.libra.core.annotation.IgnoreUserToken;
 import com.libra.core.constants.Constants;
 import com.libra.core.reqres.request.RequestData;
 import com.libra.core.reqres.response.ResponseData;
@@ -21,6 +22,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @IgnoreUserToken
     @RequestMapping(name = "用户登录", path = "/login", method = RequestMethod.POST)
     public ResponseData login(RequestData requestData) {
         String account = requestData.getParam().getString("account");
