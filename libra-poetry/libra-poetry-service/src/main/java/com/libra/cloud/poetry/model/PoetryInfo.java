@@ -1,4 +1,4 @@
-package com.libra.cloud.poetry.dto;
+package com.libra.cloud.poetry.model;
 
 import com.libra.cloud.poetry.entity.Author;
 import com.libra.cloud.poetry.entity.Poetry;

@@ -3,7 +3,7 @@ package com.libra.cloud.poetry.service;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.libra.cloud.poetry.dto.UserDTO;
+import com.libra.cloud.poetry.model.UserModel;
 import com.libra.cloud.poetry.entity.User;
 import com.libra.cloud.poetry.exception.PoetryExceptionEnum;
 import com.libra.cloud.poetry.mapper.UserMapper;
@@ -36,7 +36,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
     /**
      * 用户登录，登录成功返回token
      */
-    public UserDTO login(String username, String password) {
+    public UserModel login(String username, String password) {
 
         //查询账号是否存在
         User user = null;
@@ -57,10 +57,10 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         HashMap<String, Object> claims = new HashMap<>();
 //        claims.put(PoetryConstants.LOGIN_USER_CACHE_PREFIX, user);
         String token = jwtTokenUtil.generateToken(user.getId().toString(), claims);
-        UserDTO userDTO = new UserDTO();
-        BeanUtil.copyProperties(user, userDTO);
-        userDTO.setToken(token);
-        return userDTO;
+        UserModel userModel = new UserModel();
+        BeanUtil.copyProperties(user, userModel);
+        userModel.setToken(token);
+        return userModel;
     }
 
     /**
@@ -83,17 +83,17 @@ public class UserService extends ServiceImpl<UserMapper, User> {
     /**
      * 获取登录用户通过token
      */
-    public UserDTO getLoginUserByToken(String token) {
-        UserDTO userDTO = new UserDTO();
+    public UserModel getLoginUserByToken(String token) {
+        UserModel userModel = new UserModel();
         try {
             int userId = Integer.valueOf(jwtTokenUtil.getUserIdFromToken(token));
             User user = selectById(userId);
 //            user = jwtTokenUtil.getClaimFromToken(token).get(PoetryConstants.LOGIN_USER_CACHE_PREFIX, User.class);
-            BeanUtil.copyProperties(user, userDTO);
-            userDTO.setToken(token);
+            BeanUtil.copyProperties(user, userModel);
+            userModel.setToken(token);
         } catch (Exception e) {
             throw new ServiceException(PoetryExceptionEnum.TOKEN_ERROR);
         }
-        return userDTO;
+        return userModel;
     }
 }

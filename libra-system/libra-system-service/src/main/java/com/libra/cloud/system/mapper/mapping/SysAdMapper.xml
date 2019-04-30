@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libra.cloud.system.mapper.SysAdMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.libra.cloud.system.entity.SysAd">
+        <id column="ID" property="id"/>
+        <result column="TITLE" property="title"/>
+        <result column="IMAGE" property="image"/>
+        <result column="URL" property="url"/>
+        <result column="DES" property="des"/>
+        <result column="STATUS" property="status"/>
+        <result column="TYPE" property="type"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, TITLE, IMAGE, URL, DES, STATUS, TYPE
+    </sql>
+
+    <!-- 根据用户id获取所属的资源 -->
+    <select id="selectAdByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_ad c where c.TYPE = #{type,jdbcType=INTEGER} and c.STATUS = 1
+    </select>
+</mapper>

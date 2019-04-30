@@ -17,5 +17,5 @@ import java.util.List;
  */
 public interface RecommendMapper extends BaseMapper<Recommend> {
 
-    List<Poetry> selectRecommendByDate(Date date);
+    List<Poetry> selectRecommendByDate();
 }

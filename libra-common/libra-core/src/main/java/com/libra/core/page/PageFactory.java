@@ -134,7 +134,14 @@ public class PageFactory {
             } else {
                 Object fieldValue = requestData.get(fieldName);
                 if (fieldValue == null) {
-                    return null;
+                    if (requestData.getParam() != null) {
+                        fieldValue = requestData.getParam().get(fieldName);
+                    }
+                    if (fieldValue == null) {
+                        return null;
+                    } else {
+                        return fieldValue.toString();
+                    }
                 } else {
                     return fieldValue.toString();
                 }

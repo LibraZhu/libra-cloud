@@ -4,10 +4,10 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.libra.cloud.poetry.entity.Recommend">
-        <id column="id" property="id" />
-        <result column="poetry_id" property="poetryId" />
-        <result column="time" property="time" />
-        <result column="type" property="type" />
+        <id column="id" property="id"/>
+        <result column="poetry_id" property="poetryId"/>
+        <result column="time" property="time"/>
+        <result column="type" property="type"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -16,13 +16,13 @@
     </sql>
 
     <resultMap id="PoetryResultMap" type="com.libra.cloud.poetry.entity.Poetry">
-        <id column="id" property="id" />
-        <result column="title" property="title" />
-        <result column="content" property="content" />
-        <result column="author" property="author" />
-        <result column="dynasty" property="dynasty" />
-        <result column="tag" property="tag" />
-        <result column="like_num" property="likeNum" />
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="author" property="author"/>
+        <result column="dynasty" property="dynasty"/>
+        <result column="tag" property="tag"/>
+        <result column="like_num" property="likeNum"/>
     </resultMap>
 
     <sql id="Poetry_Column_List">
@@ -30,11 +30,11 @@
     </sql>
 
     <!-- 根据时间获取推荐诗文 -->
-    <select id="selectRecommendByDate" parameterType="java.util.Date" resultMap="PoetryResultMap">
+    <select id="selectRecommendByDate" resultMap="PoetryResultMap">
         select
         <include refid="Poetry_Column_List"/>
         from poe_poetry p where p.id in (
-        select r.poetry_id from poe_recommend r where r.type=0 and r.time >= #{date}
+        select r.poetry_id from poe_recommend r where r.type=0 and TO_DAYS(r.time)=TO_DAYS(NOW())
         )
     </select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.libra.cloud.poetry.dto;
+package com.libra.cloud.poetry.model;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.util.Date;
  * @description
  */
 @Data
-public class UserDTO {
+public class UserModel {
     /**
      * 用户id
      */

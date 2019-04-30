@@ -2,7 +2,7 @@ package com.libra.cloud.poetry.service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.libra.cloud.poetry.dto.PoetryInfo;
+import com.libra.cloud.poetry.model.PoetryInfo;
 import com.libra.cloud.poetry.entity.Poetry;
 import com.libra.cloud.poetry.exception.PoetryExceptionEnum;
 import com.libra.cloud.poetry.mapper.PoetryMapper;

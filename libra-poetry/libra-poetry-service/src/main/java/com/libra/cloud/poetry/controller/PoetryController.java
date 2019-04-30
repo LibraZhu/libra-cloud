@@ -35,17 +35,17 @@ public class PoetryController {
 
     @PostMapping(name = "诗文列表", path = "/listByAuthor")
     public ResponseData getPoetryListByAuthor(RequestData requestData) {
-        return ResponseData.success(poetryService.selectListPageByAuthor(requestData.getString("author")));
+        return ResponseData.success(poetryService.selectListPageByAuthor(requestData.getParam().getString("author")));
     }
 
     @PostMapping(name = "诗文列表", path = "/listByDynasty")
     public ResponseData getPoetryListByDynasty(RequestData requestData) {
-        return ResponseData.success(poetryService.selectListPageByAuthor(requestData.getString("dynasty")));
+        return ResponseData.success(poetryService.selectListPageByAuthor(requestData.getParam().getString("dynasty")));
     }
 
     @PostMapping(name = "诗文列表", path = "/listByTag")
     public ResponseData getPoetryListByTag(RequestData requestData) {
-        return ResponseData.success(poetryService.selectListPageByAuthor(requestData.getString("tag")));
+        return ResponseData.success(poetryService.selectListPageByAuthor(requestData.getParam().getString("tag")));
     }
 
     @PostMapping(name = "诗文信息", path = "/info")

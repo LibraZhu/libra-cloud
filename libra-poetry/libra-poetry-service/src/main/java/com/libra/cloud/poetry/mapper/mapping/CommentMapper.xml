@@ -4,14 +4,28 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.libra.cloud.poetry.entity.Comment">
-        <id column="id" property="id" />
-        <result column="poetry_id" property="poetryId" />
-        <result column="content" property="content" />
-        <result column="from_uid" property="fromUid" />
-        <result column="like_num" property="likeNum" />
-        <result column="reply_num" property="replyNum" />
-        <result column="status" property="status" />
-        <result column="create_time" property="createTime" />
+        <id column="id" property="id"/>
+        <result column="poetry_id" property="poetryId"/>
+        <result column="content" property="content"/>
+        <result column="from_uid" property="fromUid"/>
+        <result column="like_num" property="likeNum"/>
+        <result column="reply_num" property="replyNum"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="CommentModelResultMap" type="com.libra.cloud.poetry.model.CommentModel">
+        <id column="id" property="id"/>
+        <result column="poetry_id" property="poetryId"/>
+        <result column="poetry_title" property="poetryTitle"/>
+        <result column="content" property="content"/>
+        <result column="from_uid" property="fromUid"/>
+        <result column="nickname" property="fromUserName"/>
+        <result column="avatar" property="fromUserAvatar"/>
+        <result column="like_num" property="likeNum"/>
+        <result column="reply_num" property="replyNum"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -19,4 +33,16 @@
         id, poetry_id, content, from_uid, like_num, reply_num, status, create_time
     </sql>
 
+    <select id="selectCommentPage" resultMap="CommentModelResultMap">
+        select
+        c.*,u.nickname,u.avatar
+        from u_comment c
+        left join u_user u
+        on c.from_uid = u.id
+        where 1=1
+        <if test="poetryId != null">
+            and c.poetry_id = #{poetryId}
+        </if>
+        order by create_time DESC
+    </select>
 </mapper>

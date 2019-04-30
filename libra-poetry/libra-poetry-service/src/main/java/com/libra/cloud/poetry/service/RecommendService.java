@@ -25,6 +25,6 @@ public class RecommendService extends ServiceImpl<RecommendMapper, Recommend> {
      * @return 推荐诗文
      */
     public List<Poetry> selectList() {
-        return baseMapper.selectRecommendByDate(DateUtil.parseDate(DateUtil.today()));
+        return baseMapper.selectRecommendByDate();
     }
 }

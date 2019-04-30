@@ -1,11 +1,12 @@
 package com.libra.cloud.poetry.entity;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -30,6 +31,11 @@ public class Comment implements Serializable {
      */
     @TableField("poetry_id")
     private Integer poetryId;
+    /**
+     * 诗文标题
+     */
+    @TableField("poetry_title")
+    private String poetryTitle;
     /**
      * 内容
      */
@@ -74,6 +80,14 @@ public class Comment implements Serializable {
 
     public void setPoetryId(Integer poetryId) {
         this.poetryId = poetryId;
+    }
+
+    public String getPoetryTitle() {
+        return poetryTitle;
+    }
+
+    public void setPoetryTitle(String poetryTitle) {
+        this.poetryTitle = poetryTitle;
     }
 
     public String getContent() {
@@ -127,14 +141,14 @@ public class Comment implements Serializable {
     @Override
     public String toString() {
         return "Comment{" +
-        ", id=" + id +
-        ", poetryId=" + poetryId +
-        ", content=" + content +
-        ", fromUid=" + fromUid +
-        ", likeNum=" + likeNum +
-        ", replyNum=" + replyNum +
-        ", status=" + status +
-        ", createTime=" + createTime +
-        "}";
+                ", id=" + id +
+                ", poetryId=" + poetryId +
+                ", content=" + content +
+                ", fromUid=" + fromUid +
+                ", likeNum=" + likeNum +
+                ", replyNum=" + replyNum +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                "}";
     }
 }

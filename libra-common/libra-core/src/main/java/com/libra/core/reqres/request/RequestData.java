@@ -103,7 +103,11 @@ public class RequestData implements Serializable {
      * 获取指定key对应的param值
      */
     public JSONObject getParam() {
-        return this.data.getJSONObject("param");
+        JSONObject jsonObject = this.data.getJSONObject("param");
+        if (jsonObject == null) {
+            return new JSONObject();
+        }
+        return jsonObject;
     }
 
     /**
