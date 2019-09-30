@@ -3,11 +3,12 @@ package com.libra.cloud.poetry.entity;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author libra
@@ -31,6 +32,10 @@ public class Tag implements Serializable {
      * 排序
      */
     private Integer order;
+    /**
+     * 类型
+     */
+    private Integer type;
 
 
     public Integer getId() {
@@ -57,12 +62,21 @@ public class Tag implements Serializable {
         this.order = order;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Tag{" +
-        ", id=" + id +
-        ", tag=" + tag +
-        ", order=" + order +
-        "}";
+                ", id=" + id +
+                ", tag=" + tag +
+                ", order=" + order +
+                ", type=" + type +
+                "}";
     }
 }

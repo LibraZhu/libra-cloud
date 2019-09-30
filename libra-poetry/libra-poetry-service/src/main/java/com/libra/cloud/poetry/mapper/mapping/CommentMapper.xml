@@ -25,6 +25,7 @@
         <result column="like_num" property="likeNum"/>
         <result column="reply_num" property="replyNum"/>
         <result column="status" property="status"/>
+        <result column="ilike" property="iLike"/>
         <result column="create_time" property="createTime"/>
     </resultMap>
 
@@ -35,10 +36,12 @@
 
     <select id="selectCommentPage" resultMap="CommentModelResultMap">
         select
-        c.*,u.nickname,u.avatar
+        c.*,u.nickname,u.avatar,l.`status` as `ilike`
         from u_comment c
         left join u_user u
         on c.from_uid = u.id
+        left join u_like l
+        on c.id = l.type_id and l.uid = #{userId}
         where 1=1
         <if test="poetryId != null">
             and c.poetry_id = #{poetryId}

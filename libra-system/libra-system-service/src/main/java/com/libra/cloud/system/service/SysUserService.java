@@ -1,5 +1,6 @@
 package com.libra.cloud.system.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.libra.cloud.system.api.entity.LoginUser;
@@ -91,7 +92,7 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
         loginUser.setResourceUrls(resourceUrlList);
 
         HashMap<String, Object> claims = new HashMap<>();
-        claims.put(SystemConstants.LOGIN_USER_CACHE_PREFIX, loginUser);
+        claims.put(SystemConstants.LOGIN_USER_CACHE_PREFIX, JSONObject.toJSONString(loginUser));
         //生成token
         String jwtToken = jwtTokenUtil.generateToken(sysUser.getUserId().toString(), claims);
 
@@ -142,7 +143,8 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
 //        }
         LoginUser user = null;
         try {
-            user = jwtTokenUtil.getClaimFromToken(token).get(SystemConstants.LOGIN_USER_CACHE_PREFIX, LoginUser.class);
+            user = JSONObject.parseObject(jwtTokenUtil.getClaimFromToken(token).get(SystemConstants.LOGIN_USER_CACHE_PREFIX, String.class),
+                    LoginUser.class);
         } catch (Exception e) {
             throw new ServiceException(SystemExceptionEnum.TOKEN_ERROR);
         }

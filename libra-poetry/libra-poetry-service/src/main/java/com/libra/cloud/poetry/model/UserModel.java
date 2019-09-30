@@ -1,8 +1,10 @@
 package com.libra.cloud.poetry.model;
 
+import com.libra.cloud.poetry.entity.UserThird;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Libra
@@ -63,4 +65,13 @@ public class UserModel {
      * token
      */
     private String token;
+
+    /**
+     * 第三方信息
+     */
+    private List<UserThird> thirdInfoList;
+
+    private Integer follow;
+
+    private Integer fans;
 }

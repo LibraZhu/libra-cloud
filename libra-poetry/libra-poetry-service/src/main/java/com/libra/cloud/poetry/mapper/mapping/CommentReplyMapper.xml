@@ -3,15 +3,28 @@
 <mapper namespace="com.libra.cloud.poetry.mapper.CommentReplyMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.libra.cloud.poetry.entity.CommentReply">
-        <id column="id" property="id" />
-        <result column="comment_id" property="commentId" />
-        <result column="content" property="content" />
-        <result column="reply_type" property="replyType" />
-        <result column="reply_id" property="replyId" />
-        <result column="from_uid" property="fromUid" />
-        <result column="to_uid" property="toUid" />
-        <result column="create_time" property="createTime" />
+    <resultMap id="BaseResultMap" type="com.libra.cloud.poetry.entity.Comment">
+        <id column="id" property="id"/>
+        <result column="comment_id" property="commentId"/>
+        <result column="content" property="content"/>
+        <result column="reply_type" property="replyType"/>
+        <result column="reply_id" property="replyId"/>
+        <result column="from_uid" property="fromUid"/>
+        <result column="to_uid" property="toUid"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="CommentReplyModelResultMap" type="com.libra.cloud.poetry.model.CommentReplyModel">
+        <id column="id" property="id"/>
+        <result column="comment_id" property="commentId"/>
+        <result column="content" property="content"/>
+        <result column="reply_type" property="replyType"/>
+        <result column="reply_id" property="replyId"/>
+        <result column="from_uid" property="fromUid"/>
+        <result column="nickname" property="fromUserName"/>
+        <result column="avatar" property="fromUserAvatar"/>
+        <result column="to_uid" property="toUid"/>
+        <result column="create_time" property="createTime"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -19,4 +32,14 @@
         id, comment_id, content, reply_type, reply_id, from_uid, to_uid, create_time
     </sql>
 
+    <select id="selectReplyPage" resultMap="CommentReplyModelResultMap">
+        select
+        r.*,u.nickname,u.avatar
+        from u_comment_reply r
+        left join u_user u
+        on r.from_uid = u.id
+        where 1=1
+        and r.comment_id = #{commentId}
+        order by create_time DESC
+    </select>
 </mapper>

@@ -35,7 +35,7 @@ public class Author implements Serializable {
     /**
      * 介绍
      */
-    private String desc;
+    private String des;
     /**
      * 朝代
      */
@@ -76,12 +76,12 @@ public class Author implements Serializable {
         this.image = image;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDes() {
+        return des;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDes(String des) {
+        this.des = des;
     }
 
     public String getDynasty() {
@@ -114,7 +114,7 @@ public class Author implements Serializable {
         ", id=" + id +
         ", name=" + name +
         ", image=" + image +
-        ", desc=" + desc +
+        ", des=" + des +
         ", dynasty=" + dynasty +
         ", poetryNum=" + poetryNum +
         ", likeNum=" + likeNum +

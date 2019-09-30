@@ -13,8 +13,9 @@ public enum PoetryExceptionEnum implements BaseExceptionEnum {
     USER_NOT_FOUND(10003, "用户不存在"),
     USER_EXIST(10004, "用户已存在"),
     INVALID_PWD(10005, "密码错误"),
-    TEMPTY_POETRY(100010, "找不到诗文"),
-    TEMPTY_FAVORITE(100011, "找不到收藏");
+    TEMPTY_POETRY(10010, "找不到诗文"),
+    TEMPTY_FAVORITE(10011, "找不到收藏"),
+    TEMPTY_OPENID(11000, "微信获取openId错误");
 
     PoetryExceptionEnum(int code, String message) {
         this.code = code;

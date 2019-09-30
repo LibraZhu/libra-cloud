@@ -1,5 +1,6 @@
 package com.libra.cloud.poetry.service;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.libra.cloud.poetry.entity.Comment;
@@ -25,9 +26,19 @@ public class CommentService extends ServiceImpl<CommentMapper, Comment> {
      *
      * @return 评论列表
      */
-    public PageResult selectCommentPage(Integer poetryId) {
+    public PageResult selectCommentPage(Integer poetryId, Integer userId) {
         Page<CommentModel> page = PageFactory.defaultPage();
-        page.setRecords(baseMapper.selectCommentPage(page, poetryId));
+        page.setRecords(baseMapper.selectCommentPage(page, poetryId, userId));
         return new PageResult<>(page);
+    }
+
+    /**
+     * 获取诗词的评论数
+     *
+     * @param poetryId 诗词id
+     * @return 评论数
+     */
+    public int count(Integer poetryId) {
+        return selectCount(new EntityWrapper<Comment>().eq("poetry_id", poetryId));
     }
 }

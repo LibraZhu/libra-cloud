@@ -43,7 +43,7 @@ public class FavoriteService extends ServiceImpl<FavoriteMapper, Favorite> {
      * @param userId 用户id
      * @return 收藏列表
      */
-    public PageResult selectUserFavoritePage(Integer userId) {
+    public PageResult<FavoriteModel> selectUserFavoritePage(Integer userId) {
         Page<FavoriteModel> page = PageFactory.defaultPage();
         page.setRecords(baseMapper.selectFavoritePage(page, userId));
         return new PageResult<>(page);

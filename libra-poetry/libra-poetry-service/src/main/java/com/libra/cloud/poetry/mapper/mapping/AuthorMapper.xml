@@ -7,7 +7,7 @@
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="image" property="image" />
-        <result column="desc" property="desc" />
+        <result column="des" property="des" />
         <result column="dynasty" property="dynasty" />
         <result column="poetry_num" property="poetryNum" />
         <result column="like_num" property="likeNum" />
@@ -15,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, image, desc, dynasty, poetry_num, like_num
+        id, name, image, des, dynasty, poetry_num, like_num
     </sql>
 
 </mapper>

@@ -16,10 +16,10 @@ public class GenerateParams {
     private String outputDirectory = "temp";
 
     //jdbc驱动
-    private String jdbcDriver = "com.mysql.jdbc.Driver";
+    private String jdbcDriver = "com.mysql.cj.jdbc.Driver";
 
     //数据库连接地址
-    private String jdbcUrl = "jdbc:mysql://localhost:3306/poetry?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=UTC";
+    private String jdbcUrl = "jdbc:mysql://localhost:3306/libra_cloud?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=UTC";
 
     //数据库账号
     private String jdbcUserName = "root";

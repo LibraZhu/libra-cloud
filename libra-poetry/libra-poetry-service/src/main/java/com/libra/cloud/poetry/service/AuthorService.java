@@ -1,5 +1,6 @@
 package com.libra.cloud.poetry.service;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.libra.cloud.poetry.entity.Author;
 import com.libra.cloud.poetry.mapper.AuthorMapper;
@@ -23,7 +24,11 @@ public class AuthorService extends ServiceImpl<AuthorMapper, Author> {
      * @return PageResult
      */
     public PageResult selectListPage() {
-        return new PageResult<>(selectPage(PageFactory.defaultPage()));
+        Page<Author> page = PageFactory.defaultPage();
+        page.setOpenSort(true);
+        page.setOrderByField("like_num");
+        page.setAsc(false);
+        return new PageResult<>(selectPage(page));
     }
 
     /**

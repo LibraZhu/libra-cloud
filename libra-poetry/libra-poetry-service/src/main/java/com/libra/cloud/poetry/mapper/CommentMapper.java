@@ -17,5 +17,5 @@ import java.util.List;
  * @since 2018-12-27
  */
 public interface CommentMapper extends BaseMapper<Comment> {
-    List<CommentModel> selectCommentPage(RowBounds page, @Param("poetryId") Integer poetryId);
+    List<CommentModel> selectCommentPage(RowBounds page, @Param("poetryId") Integer poetryId, @Param("userId") Integer userId);
 }

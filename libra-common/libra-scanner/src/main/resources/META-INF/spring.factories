@@ -1,2 +1,6 @@
+# AutoConfiguration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.libra.scanner.config.ScannerAutoConfiguration
+
+org.springframework.context.ApplicationListener=\
+com.libra.scanner.listener.ResourceReportListener

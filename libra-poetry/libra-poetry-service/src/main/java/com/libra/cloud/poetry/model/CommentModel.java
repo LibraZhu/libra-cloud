@@ -46,6 +46,10 @@ public class CommentModel {
      */
     private Integer status;
     /**
+     * 我是否点赞 0:没点赞; 1:点赞
+     */
+    private Integer iLike;
+    /**
      * 评论时间
      */
     private Date createTime;

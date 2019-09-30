@@ -4,12 +4,25 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.libra.cloud.poetry.entity.Follow">
-        <id column="id" property="id" />
-        <result column="uid" property="uid" />
-        <result column="followed_id" property="followedId" />
-        <result column="status" property="status" />
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="followed_id" property="followedId"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <resultMap id="BaseModelResultMap" type="com.libra.cloud.poetry.model.FollowModel">
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="nickname" property="nickName"/>
+        <result column="avatar" property="avatar"/>
+        <result column="followed_id" property="followedId"/>
+        <result column="nicknameF" property="followedNickName"/>
+        <result column="avatarF" property="followedAvatar"/>
+        <result column="uidFans" property="uidFans"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -17,4 +30,33 @@
         id, uid, followed_id, status, create_time, update_time
     </sql>
 
+    <select id="selectFollowPage" resultMap="BaseModelResultMap">
+        select
+        f.*,u.nickname,u.avatar,uu.nickname as nicknameF,uu.avatar as avatarF
+        from u_follow f
+        left join u_user u
+        on f.uid = u.id
+        left join u_user uu
+        on f.followed_id = uu.id
+        where 1=1
+        and f.uid = #{uid}
+        and f.status = 1
+        order by update_time DESC
+    </select>
+    <select id="selectFansPage" resultMap="BaseModelResultMap">
+        select
+        f.*,u.nickname,u.avatar,uu.nickname as nicknameF,uu.avatar as avatarF,ff.uid as uidFans
+        from u_follow f
+        left join u_user u
+        on f.uid = u.id
+        left join u_user uu
+        on f.followed_id = uu.id
+        left join u_follow ff
+        on f.uid = ff.followed_id
+        and ff.status = 1
+        where 1=1
+        and f.followed_id = #{uid}
+        and f.status = 1
+        order by update_time DESC
+    </select>
 </mapper>

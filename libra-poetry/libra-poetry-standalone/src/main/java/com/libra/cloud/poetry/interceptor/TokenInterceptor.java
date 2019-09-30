@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 /**
  * @author Libra
@@ -93,7 +94,8 @@ public class TokenInterceptor implements HandlerInterceptor {
                 sb.append(key).append("=").append(JSON.toJSON(value)).append("&");
             }
         }
-
+        Logger.getLogger(getClass().getName()).info("sign:" + sb.substring(0, sb.length() - 1));
+        Logger.getLogger(getClass().getName()).info(Base64Utils.encodeToString(sb.substring(0, sb.length() - 1).getBytes()));
         if (sign.isEmpty() || !sign.equals(Base64Utils.encodeToString(sb.substring(0, sb.length() - 1).getBytes()))) {
             throw new ServiceException(PoetryExceptionEnum.SIGN_ERROR);
         }
