@@ -94,9 +94,6 @@ public class LogUtil {
                 case WARN:
                     logger.warn(createMessage(requestData, message));
                     break;
-                case DEBUG:
-                    logger.debug(createMessage(requestData, message));
-                    break;
                 case ERROR:
                     logger.error(createMessage(requestData, message), exception);
                     break;

@@ -1,6 +1,6 @@
 package com.libra.cloud.system.db;
 
-import com.libra.cloud.system.api.entity.SysUser;
+import com.libra.cloud.system.entity.SysUser;
 import com.libra.core.db.DbInitializer;
 import org.springframework.stereotype.Component;
 

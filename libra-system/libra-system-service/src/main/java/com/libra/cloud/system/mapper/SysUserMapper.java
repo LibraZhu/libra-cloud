@@ -1,7 +1,7 @@
 package com.libra.cloud.system.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.libra.cloud.system.api.entity.SysUser;
+import com.libra.cloud.system.entity.SysUser;
 
 /**
  * <p>

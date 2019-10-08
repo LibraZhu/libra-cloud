@@ -1,7 +1,7 @@
 package com.libra.cloud.system.controller;
 
 import com.libra.cloud.system.context.LoginContext;
-import com.libra.cloud.system.api.entity.SysUser;
+import com.libra.cloud.system.entity.SysUser;
 import com.libra.cloud.system.service.SysUserService;
 import com.libra.core.reqres.request.RequestData;
 import com.libra.core.reqres.response.ResponseData;

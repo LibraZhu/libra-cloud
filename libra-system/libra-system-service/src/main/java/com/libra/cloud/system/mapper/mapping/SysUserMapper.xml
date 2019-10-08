@@ -3,7 +3,7 @@
 <mapper namespace="com.libra.cloud.system.mapper.SysUserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.libra.cloud.system.api.entity.SysUser">
+    <resultMap id="BaseResultMap" type="com.libra.cloud.system.entity.SysUser">
         <id column="USER_ID" property="userId"/>
         <result column="AVATAR" property="avatar"/>
         <result column="ACCOUNT" property="account"/>

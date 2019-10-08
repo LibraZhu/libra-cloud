@@ -21,7 +21,7 @@ public class LoginUser implements AbstractLoginUser, Serializable {
     /**
      * 账号
      */
-    private SysUser user;
+    private String user;
 
     /**
      * 应用id
@@ -48,7 +48,7 @@ public class LoginUser implements AbstractLoginUser, Serializable {
     }
 
     @Override
-    public SysUser getUser() {
+    public String getUser() {
         return user;
     }
 
